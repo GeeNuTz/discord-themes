@@ -173,6 +173,12 @@ test("the header stamp is this build, not ClearVision", () => {
   assert.match(source, new RegExp(`content:\\s*"v${v}"`), "title bar shows the version");
   assert.match(source, new RegExp(`content:\\s*"Comfy Deep v${v}"`), "the info slot repeats both");
   assert.doesNotMatch(source, /content:\s*"ClearVision/, "ClearVision's own stamp is replaced");
+
+    for (const line of source.split("\n")) {
+      if (!/content:\s*"(Comfy Deep|Aetheris)/.test(line)) continue;
+      const block = source.slice(0, source.indexOf(line)).split("}").pop();
+      assert.match(block, /:root:is\(\.theme-dark/, "stamp rules must outrank ClearVision's (0,2,1)");
+    }
 });
 
 test("filled-button overrides exist for brand, danger and success", () => {

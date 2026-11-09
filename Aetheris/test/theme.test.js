@@ -225,6 +225,12 @@ for (const { name, file, theme, description } of themes) {
     assert.match(source, new RegExp(`content:\\s*"v${versionJson.version}"`), "title bar shows this build's version");
     assert.match(source, new RegExp(`content:\\s*"${name} v${versionJson.version}"`), "the info slot repeats both");
     assert.doesNotMatch(source, /content:\s*"ClearVision/, "ClearVision's own stamp is replaced");
+
+    for (const line of source.split("\n")) {
+      if (!/content:\s*"(Comfy Deep|Aetheris)/.test(line)) continue;
+      const block = source.slice(0, source.indexOf(line)).split("}").pop();
+      assert.match(block, /:root:is\(\.theme-dark/, "stamp rules must outrank ClearVision's (0,2,1)");
+    }
   });
 
   test(`${name}: keeps the Aetheris faces`, () => {

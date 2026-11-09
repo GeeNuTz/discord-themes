@@ -545,16 +545,23 @@
  * header info slot. This build stamps itself instead: same place, same type,
  * the theme's name and version from the file header.
  *
- * The selectors are pinned to the class hashes ClearVision 7.0.1 targets. If a
- * Discord update renames them the stamp reverts to ClearVision's own text -
- * visible, harmless, and better than guessing a broader selector that could
- * restyle an unrelated element. */
-:is([class*="leading_3zSH5d"], [class*="leading-3zSH5d"])::before {
+ * Specificity matters here: ClearVision's rules are
+ * `:is(.theme-dark,.theme-light):not(.platform-osx) .leading_3zSH5d::before`
+ * (0,2,1), so this is anchored on `:root:is(...)` to reach (0,3,1) and win
+ * without !important.
+ *
+ * The class hashes are the ones ClearVision 7.0.1 targets. If a Discord update
+ * renames them the stamp reverts to ClearVision's own text - visible, harmless,
+ * and better than guessing a broader selector that could restyle something else. */
+:root:is(.theme-dark, .theme-darker, .theme-midnight)
+    :is([class*="leading_3zSH5d"], [class*="leading-3zSH5d"])::before {
     content: "Aetheris Deep";
 }
-:is([class*="leading_3zSH5d"], [class*="leading-3zSH5d"])::after {
+:root:is(.theme-dark, .theme-darker, .theme-midnight)
+    :is([class*="leading_3zSH5d"], [class*="leading-3zSH5d"])::after {
     content: "v5.3.1";
 }
-:is([class*="info_C_Rpm7"], [class*="info-C_Rpm7"])::after {
+:root:is(.theme-dark, .theme-darker, .theme-midnight)
+    :is([class*="info_C_Rpm7"], [class*="info-C_Rpm7"])::after {
     content: "Aetheris Deep v5.3.1";
 }
