@@ -1,0 +1,20 @@
+[
+  {
+    "file": "Aetheris.theme.css",
+    "name": "Aetheris",
+    "palette": "aetheris",
+    "description": "Vivid Aetheris: full-strength purple gradient, layered surfaces, readable text. The default build."
+  },
+  {
+    "file": "Aetheris-BG.theme.css",
+    "name": "Aetheris BG",
+    "palette": "aetheris-bg",
+    "description": "Aetheris over a purple-tinted wallpaper. Same palette, panels opaque enough that any wallpaper stays readable."
+  },
+  {
+    "file": "Aetheris-Deep.theme.css",
+    "name": "Aetheris Deep",
+    "palette": "aetheris-deep",
+    "description": "Aetheris Deep: the same palette pulled toward indigo, for late nights and OLED screens."
+  }
+]

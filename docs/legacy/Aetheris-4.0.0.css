@@ -1,0 +1,186 @@
+/**
+ * @name Aetheris x ClearVision
+ * @author AsterionVT & AI (Merged for Vesktop)
+ * @version 4.0.0
+ * @description Aetheris Dark Purple color palette and fonts injected into the ClearVision v7 framework for full UI coverage.
+ * @source https://github.com/ClearVision/ClearVision-v7
+ */
+
+/* ==================== CLEARVISION BASE IMPORTS ==================== */
+@import url("https://clearvision.github.io/ClearVision-v7/main.css");
+@import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
+
+/* ==================== AETHERIS CUSTOM FONTS ==================== */
+@font-face {
+    font-family: 'Meloso';
+    src: url('https://github.com/Quinxxxx/Meloso/blob/main/Meloso-Bold.ttf?raw=1') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Meloso';
+    src: url('https://github.com/Quinxxxx/Meloso/blob/main/Meloso-Medium.ttf?raw=1') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RobotoCustom';
+    src: url('https://github.com/VodkaXMartini/images/raw/main/Roboto-Regular.ttf?raw=1') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ==================== CLEARVISION SETTINGS OVERRIDE ==================== */
+:root {
+    /* ACCENT COLORS (Aetheris) */
+    --main-color: #9360f0;
+    --hover-color: #8949ff;
+    --success-color: #5aeda1;
+    --danger-color: #b52258;
+
+    /* STATUS COLORS (Aetheris) */
+    --online-color: #5aeda1;
+    --idle-color: #f6c177;
+    --dnd-color: #eb6f92;
+    --streaming-color: #6052ff;
+    --offline-color: #6e6a86;
+
+    /* APP BACKGROUND */
+    --background-shading-percent: 100%;
+    --background-image: none; /* Set to none to keep Aetheris solid dark purple. Add a url() here if you want an image. */
+    --background-position: center;
+    --background-size: cover;
+    --background-attachment: fixed;
+    --background-filter: saturate(calc(var(--saturation-factor, 1) * 1));
+
+    /* FONTS (Aetheris JSON mapped) */
+    --main-font: 'RobotoCustom', 'Meloso', "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --code-font: Consolas, "gg mono", "Liberation Mono", Menlo, Courier, monospace;
+
+    /* CHANNEL COLORS */
+    --channel-normal: #8957ff;
+    --channel-muted: #8957ff;
+    --channel-hover: #8949ff;
+    --channel-selected: #9360f0;
+    --channel-selected-bg: var(--main-color);
+    --channel-unread: #e9d9ff;
+    --channel-unread-hover: var(--hover-color);
+
+    /* ACCESSIBILITY */
+    --focus-color: var(--main-color);
+}
+
+/* ==================== AETHERIS COLOR OVERRIDES (ALL THEMES) ==================== */
+:root, .theme-dark, .theme-darker, .theme-midnight, .theme-light {
+    /* High Coverage Base Theme Overrides */
+    --background-primary: #080228 !important;
+    --background-secondary: #080228 !important;
+    --background-secondary-alt: #080228 !important;
+    --background-tertiary: #0c0c0e !important;
+    --background-floating: #360099 !important;
+    --background-nested-floating: #0e0e10 !important;
+    --home-background: #080228 !important;
+
+    --bg-base-primary: #080228 !important;
+    --bg-base-secondary: #080228 !important;
+    --bg-base-tertiary: #080228 !important;
+    --bg-space: #080228 !important;
+    --bg-surface-raised: #0f034d !important;
+    --bg-surface-overlay: #360099 !important;
+    --bg-backdrop: rgba(0, 0, 0, 0.75) !important;
+
+    /* Text & Navigation Categories */
+    --normal-text: #cbadff !important;
+    --text-normal: #cbadff !important;
+    --text-muted: #8957ff !important;
+    --muted-text: #8957ff !important;
+    --text-link: #9360f0 !important;
+    --text-primary: #e9d9ff !important;
+    --text-secondary: #eae1ef !important;
+    --header-primary: #cbadff !important;
+    --header-secondary: #8957ff !important;
+
+    --channels-default: #8957ff !important;
+    --channel-icon: #8957ff !important;
+
+    /* Component Shells */
+    --channeltextarea-background: #0c0c0e !important;
+    --chat-input-background: #0c0c0e !important;
+    --card-primary-bg: #080228 !important;
+    --card-secondary-bg: #0f034d !important;
+    --embed-background: #0e0449 !important;
+    --activity-card-background: #080228 !important;
+
+    /* Modifiers & Interactivity */
+    --interactive-normal: #cbadff !important;
+    --interactive-hover: #8949ff !important;
+    --interactive-active: #9360f0 !important;
+    --interactive-muted: #8957ff !important;
+    --brand-experiment: #9360f0 !important;
+    --brand-experiment-560: #8949ff !important;
+
+    --border-faint: rgba(255, 255, 255, 0.07) !important;
+    --border-subtle: rgba(255, 255, 255, 0.11) !important;
+    --border-strong: rgba(255, 255, 255, 0.15) !important;
+    --background-modifier-hover: rgba(255, 255, 255, 0.05) !important;
+    --background-modifier-active: rgba(255, 255, 255, 0.08) !important;
+    --background-modifier-selected: rgba(255, 255, 255, 0.12) !important;
+
+    /* App Background Shading */
+    --background-shading: rgba(8, 2, 40, 0.8) !important;
+    --card-shading: rgba(15, 3, 77, 0.6) !important;
+    --popout-shading: rgba(8, 2, 40, 0.95) !important;
+    --modal-shading: rgba(8, 2, 40, 0.95) !important;
+    --input-shading: rgba(12, 12, 14, 0.8) !important;
+}
+
+/* ==================== STRUCTURAL LAYOUT PATCHES ==================== */
+/* Forcibly recolors layout wrappers so nothing drops back to default gray ClearVision background masks */
+div[class^="sidebar_"],
+div[class^="chat_"],
+nav[class^="guilds_"],
+div[class^="container_"],
+section[class^="title_"],
+div[class^="members_"],
+div[class^="panel_"],
+main[class^="chatContent_"] {
+    background-color: #080228 !important;
+}
+
+/* ==================== MENTION & ALERTS PATCH (From Aetheris JSON) ==================== */
+/* System Alerts and Mention Strip Overrides */
+div[class*="mentioned_"], .message-mentioned, .mentioned {
+    background-color: rgba(114, 0, 0, 0.15) !important; /* MESSAGE_MENTIONED_BACKGROUND_DEFAULT */
+    border-left-color: #5025fc !important; /* mentionLineColor */
+}
+
+/* ==================== RAW COLOR OVERRIDES (From Aetheris JSON) ==================== */
+:root {
+    --brand-260: #9360f0;
+    --brand-360: #9360f0;
+    --brand-460: #9360f0;
+    --brand-500: #9360f0;
+    --brand-560: #8949ff;
+    --brand-600: #9360f0;
+    --brand-700: #9360f0;
+    --brand-730: #cbadff;
+
+    --primary-100: #8957ff;
+    --primary-200: #cbadff;
+    --primary-300: #9360f0;
+    --primary-400: #8949ff;
+
+    --red-400: #7150eb;
+    --red-500: #7150eb;
+
+    --green-360: #43b581;
+    --green-500: #43b581;
+
+    --status-danger: #b52258;
+    --status-danger-background: #2409aa;
+
+    --scrollbar-auto-thumb: #d0b8f4;
+    --scrollbar-auto-track: transparent;
+    --scrollbar-thin-thumb: #d0b8f4;
+    --scrollbar-thin-track: transparent;
+}

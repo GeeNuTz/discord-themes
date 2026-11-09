@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aetheris Deep — palette preview</title>
+<style>
+  :root { --m-rail: rgba(4, 0, 16, 0.84); --m-sidebar: rgba(7, 1, 32, 0.74); --m-chat: rgba(10, 3, 46, 0.64); --m-raised: rgba(14, 4, 56, 0.82); --m-input: rgba(12, 4, 50, 0.86); --m-border: rgba(147, 96, 240, 0.24); --m-text: #e9dcff; --m-text-strong: #f7f2ff; --m-text-muted: #a08cd4; --m-text-dim: #8f79c6; --m-channel: #c9b6f2; --m-channel-muted: #9b86cc; --m-unread: #d9c9ff; --m-accent: #9360f0; --m-accent-fill: #7636d8; --m-on-accent: #ffffff; --m-selected-bg: #9360f0; --m-selected-fg: #12042c; --m-success: #4ade9e; --m-warning: #f9c46b; --m-danger: #ff7a94; --m-offline: #8f79c6; --m-mention-bg: hsl(from #9360f0 h s l / 0.16); --m-mention-pill: #7636d8; --m-mention-pill-fg: #f4efff; --m-scrollbar: #6a3fc0; --m-filter: saturate(calc(1 * 1.05)); --m-bg: radial-gradient(circle 1200px at 50% -8%, rgba(147, 96, 240, 0.18), rgba(147, 96, 240, 0) 66%), radial-gradient(circle 900px at 14% 6%, rgba(147, 96, 240, 0.32), rgba(147, 96, 240, 0) 70%), radial-gradient(circle 1100px at 88% 94%, rgba(80, 37, 252, 0.26), rgba(80, 37, 252, 0) 72%), radial-gradient(circle 760px at 54% 48%, rgba(53, 0, 153, 0.34), rgba(53, 0, 153, 0) 74%), linear-gradient(158deg, #0b0438 0%, #080228 44%, #05001c 100%); }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: "Roboto", "Noto Sans", "DejaVu Sans", system-ui, sans-serif;
+    font-size: 15px; color: var(--m-text); background: var(--m-chat); overflow: hidden;
+  }
+  .app { height: 100vh; display: flex; flex-direction: column; }
+  .app::before {
+    content: ""; position: fixed; inset: 0; z-index: 0;
+    background: var(--m-bg); filter: var(--m-filter);
+    background-position: center; background-size: cover; background-repeat: no-repeat;
+  }
+  .app > * { position: relative; z-index: 1; }
+  .titlebar {
+    height: 32px; flex: 0 0 32px; display: flex; align-items: center; gap: 10px;
+    padding: 0 12px; background: var(--m-rail); border-bottom: 1px solid var(--m-border);
+    font-size: 12px; color: var(--m-text-muted);
+  }
+  .titlebar strong { color: var(--m-text); font-weight: 700; letter-spacing: .2px; }
+  .titlebar .spacer { flex: 1; }
+  .dots { display: flex; gap: 8px; }
+  .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--m-border); display: block; }
+  .shell { flex: 1; display: flex; min-height: 0; }
+  .rail {
+    width: 72px; flex: 0 0 72px; background: var(--m-rail); border-right: 1px solid var(--m-border);
+    display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 0;
+  }
+  .guild {
+    width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center;
+    background: var(--m-raised); color: var(--m-text); font-weight: 700; font-size: 13px;
+    border: 1px solid var(--m-border);
+  }
+  .guild.active { border-radius: 15px; background: var(--m-accent); color: var(--m-selected-fg); border-color: var(--m-accent); }
+  .rail hr { width: 28px; border: 0; border-top: 1px solid var(--m-border); margin: 4px 0; }
+  .sidebar {
+    width: 238px; flex: 0 0 238px; background: var(--m-sidebar);
+    border-right: 1px solid var(--m-border); display: flex; flex-direction: column; min-height: 0;
+  }
+  .server { padding: 12px 14px; font-weight: 700; color: var(--m-text-strong); border-bottom: 1px solid var(--m-border); display: flex; align-items: center; }
+  .server span { margin-left: auto; color: var(--m-text-muted); font-weight: 400; }
+  .channels { padding: 10px 0; overflow: hidden; flex: 1; }
+  .category {
+    display: flex; align-items: center; gap: 8px; padding: 12px 14px 6px;
+    font-size: 11px; letter-spacing: .8px; text-transform: uppercase; color: var(--m-text-muted);
+  }
+  .category::after { content: ""; flex: 1; border-top: 1px solid var(--m-border); }
+  .channel {
+    display: flex; align-items: center; gap: 8px; margin: 1px 8px; padding: 7px 10px;
+    border-radius: 6px; color: var(--m-channel); font-size: 15px;
+  }
+  .channel .hash { color: var(--m-channel-muted); }
+  .channel.muted { color: var(--m-channel-muted); }
+  .channel.unread { color: var(--m-unread); font-weight: 700; }
+  .channel.selected { background: var(--m-selected-bg); color: var(--m-selected-fg); font-weight: 600; }
+  .channel.selected .hash { color: var(--m-selected-fg); opacity: .75; }
+  .channel .badge { margin-left: auto; background: var(--m-danger); color: #fff; font-size: 11px; border-radius: 8px; padding: 0 6px; }
+  .userpanel {
+    height: 56px; flex: 0 0 56px; display: flex; align-items: center; gap: 8px;
+    padding: 0 10px; background: var(--m-chat); border-top: 1px solid var(--m-border);
+  }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%; flex: 0 0 32px;
+    background: linear-gradient(135deg, var(--m-accent), var(--m-raised));
+    border: 1px solid var(--m-border);
+  }
+  .userpanel .who { font-size: 13px; }
+  .userpanel .who b { display: block; color: var(--m-text-strong); font-size: 14px; }
+  .userpanel .who small { color: var(--m-text-muted); }
+  .icons { margin-left: auto; display: flex; gap: 10px; color: var(--m-text-muted); font-size: 15px; }
+  .chat { flex: 1; display: flex; flex-direction: column; min-width: 0; background: var(--m-chat); }
+  .chathead {
+    height: 46px; flex: 0 0 46px; display: flex; align-items: center; gap: 8px;
+    padding: 0 16px; border-bottom: 1px solid var(--m-border);
+    background: var(--m-chat); font-weight: 700; color: var(--m-text-strong);
+  }
+  .chathead em { font-style: normal; font-weight: 400; color: var(--m-text-muted); font-size: 13px; padding-left: 8px; border-left: 1px solid var(--m-border); }
+  .messages { flex: 1; overflow: hidden; padding: 16px 8px 10px 16px; position: relative; }
+  .msg { display: flex; gap: 12px; padding: 6px 8px; border-radius: 4px; }
+  .msg .mbody { flex: 1; min-width: 0; }
+  .meta { display: flex; align-items: baseline; gap: 8px; }
+  .meta b { color: var(--m-text-strong); font-weight: 600; font-size: 15px; }
+  .meta time { color: var(--m-text-muted); font-size: 11px; }
+  .text { color: var(--m-text); margin-top: 2px; line-height: 1.35; }
+  .text.mentionline { color: var(--m-text-strong); }
+  .mention {
+    background: var(--m-mention-bg); box-shadow: inset 2px 0 0 var(--m-accent);
+    border-radius: 4px; padding: 2px 8px; margin: 4px 0 4px -8px;
+  }
+  .pill {
+    background: var(--m-mention-pill); color: var(--m-mention-pill-fg);
+    border-radius: 5px; padding: 0 5px; font-weight: 500;
+  }
+  .link { color: var(--m-accent); text-decoration: none; }
+  .divider { display: flex; align-items: center; gap: 10px; margin: 14px 8px 6px; color: var(--m-text-muted); font-size: 11px; }
+  .divider::before, .divider::after { content: ""; flex: 1; border-top: 1px solid var(--m-border); }
+  .card {
+    margin-top: 6px; display: flex; background: var(--m-raised); border: 1px solid var(--m-border);
+    border-left: 3px solid var(--m-accent); border-radius: 6px; padding: 10px 12px; max-width: 430px;
+  }
+  .card .thumb { width: 64px; height: 64px; border-radius: 6px; margin-right: 12px; background: linear-gradient(140deg, var(--m-accent), var(--m-chat)); flex: 0 0 64px; }
+  .card h4 { margin: 0 0 4px; font-size: 14px; color: var(--m-text-strong); }
+  .card p { margin: 0; font-size: 13px; color: var(--m-text-muted); line-height: 1.35; }
+  .composer { padding: 0 16px 14px; }
+  .composer .box {
+    display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px;
+    background: var(--m-input); border: 1px solid var(--m-border); border-radius: 10px; color: var(--m-text-muted);
+  }
+  .composer .box .plus { width: 20px; height: 20px; border-radius: 50%; background: var(--m-raised); display: grid; place-items: center; color: var(--m-text); font-size: 13px; }
+  .composer .box .tools { margin-left: auto; display: flex; gap: 12px; }
+  .scroll { width: 8px; background: var(--m-scrollbar); border-radius: 4px; margin: 6px 4px 6px 0; flex: 0 0 8px; }
+  .members {
+    width: 236px; flex: 0 0 236px; background: var(--m-sidebar);
+    border-left: 1px solid var(--m-border); padding: 12px 8px; overflow: hidden;
+  }
+  .members .role { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--m-text-muted); margin: 10px 8px 6px; }
+  .member { display: flex; align-items: center; gap: 9px; padding: 6px 8px; border-radius: 6px; color: var(--m-text-muted); font-size: 14px; }
+  .member b { color: var(--m-text); font-weight: 500; }
+  .member.offline b { color: var(--m-text-dim); font-weight: 400; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; margin-left: auto; flex: 0 0 9px; }
+  .dot.on { background: var(--m-success); }
+  .dot.idle { background: var(--m-warning); }
+  .dot.dnd { background: var(--m-danger); }
+  .dot.off { background: var(--m-offline); }
+  .rolebadge { font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 3px; background: var(--m-accent-fill); color: var(--m-on-accent); }
+  .tag { font-size: 10px; padding: 1px 5px; border-radius: 3px; border: 1px solid var(--m-border); color: var(--m-text-muted); }
+  .reaction { display: inline-flex; align-items: center; gap: 5px; margin-top: 6px; padding: 2px 8px; border-radius: 10px; background: var(--m-raised); border: 1px solid var(--m-border); font-size: 12px; color: var(--m-text-muted); }
+  .reaction.me { background: var(--m-accent); border-color: var(--m-accent); color: var(--m-selected-fg); }
+  .note { position: absolute; right: 18px; bottom: 10px; font-size: 11px; color: var(--m-text-muted); }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="titlebar">
+    <strong>ClearVision 7.0.1</strong> <span>Aetheris Deep</span>
+    <span class="spacer"></span><span>Bonkerz</span><span class="spacer"></span>
+    <div class="dots"><i></i><i></i><i></i></div>
+  </div>
+  <div class="shell">
+    <div class="rail">
+      <div class="guild active">B</div><div class="guild">⚙</div><div class="guild">✦</div><div class="guild">◈</div>
+      <hr><div class="guild">▲</div><div class="guild">◍</div><div class="guild">✿</div><hr><div class="guild">◔</div>
+    </div>
+    <div class="sidebar">
+      <div class="server">Bonkerz <span>⌄</span></div>
+      <div class="channels">
+        <div class="category">Text Channels</div>
+        <div class="channel selected"><span class="hash">#</span> the-asylum</div>
+        <div class="channel"><span class="hash">#</span> unemployed-activities</div>
+        <div class="channel"><span class="hash">#</span> yap-central</div>
+        <div class="channel unread"><span class="hash">#</span> isle-feed <span class="badge">3</span></div>
+        <div class="channel muted"><span class="hash">#</span> old-bits</div>
+        <div class="category">Meecha Voice</div>
+        <div class="channel"><span class="hash">◔</span> Meccha #1</div>
+        <div class="channel"><span class="hash">◔</span> Meccha #2</div>
+        <div class="category">Isle Voice</div>
+        <div class="channel"><span class="hash">◔</span> Isle #1</div>
+      </div>
+      <div class="userpanel">
+        <div class="avatar"></div>
+        <div class="who"><b>GeeNuTz</b><small>Online</small></div>
+        <div class="icons">🎙 ✆ ⚙</div>
+      </div>
+    </div>
+    <div class="chat">
+      <div class="chathead"># the-asylum <em>vent, shitpost, exist</em></div>
+      <div class="messages">
+        <div class="msg">
+          <div class="avatar"></div>
+          <div class="mbody">
+            <div class="meta"><b>GeeNuTz</b><span class="rolebadge">ISLE</span><time>10/9/26, 20:44</time></div>
+            <div class="text">lmao</div>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="avatar"></div>
+          <div class="mbody">
+            <div class="meta"><b>esculho ching</b><time>10/9/26, 20:51</time></div>
+            <div class="text">bro trapp you freaky</div>
+            <div class="mention"><div class="text mentionline"><span class="pill">@GeeNuTz</span> you smoking that 0.5 cheese sherbet</div></div>
+            <div class="reaction me">🔥 2</div> <div class="reaction">😂 1</div>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="avatar"></div>
+          <div class="mbody">
+            <div class="meta"><b>GeeNuTz</b><span class="rolebadge">ISLE</span><time>10/9/26, 20:57</time></div>
+            <div class="text">yup — see <a class="link" href="#">the archive thread</a></div>
+          </div>
+        </div>
+        <div class="divider">November 7, 2026</div>
+        <div class="msg">
+          <div class="avatar"></div>
+          <div class="mbody">
+            <div class="meta"><b>GeeNuTz</b><span class="rolebadge">ISLE</span><time>11/7/26, 14:34</time></div>
+            <div class="text"><a class="link" href="#">https://discord.com/users/117868621859403543</a></div>
+            <div class="card">
+              <div class="thumb"></div>
+              <div>
+                <h4>GeeNuTz</h4>
+                <p>geenutz · Zen Baboon · ISLE<br>Long-form text sits on the raised surface so it stays readable over the backdrop.</p>
+              </div>
+            </div>
+            <div class="note">palette preview — layout is a mock</div>
+          </div>
+        </div>
+      </div>
+      <div class="composer">
+        <div class="box">
+          <span class="plus">+</span><span>Message #the-asylum</span><span class="tools">🖼 GIF 😊</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll"></div>
+    <div class="members">
+      <div class="role">Online — 3</div>
+      <div class="member"><div class="avatar"></div><b>GeeNuTz</b><span class="tag">ISLE</span><span class="dot on"></span></div>
+      <div class="member"><div class="avatar"></div><b>Snoop</b><span class="rolebadge">peep</span><span class="dot idle"></span></div>
+      <div class="member"><div class="avatar"></div><b>Meccha</b><span class="tag">bot</span><span class="dot dnd"></span></div>
+      <div class="role">Offline — 3</div>
+      <div class="member offline"><div class="avatar"></div><b>samzoflame</b><span class="dot off"></span></div>
+      <div class="member offline"><div class="avatar"></div><b>esculho ching</b><span class="dot off"></span></div>
+      <div class="member offline"><div class="avatar"></div><b>TrapGodd4</b><span class="dot off"></span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

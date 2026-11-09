@@ -1,0 +1,424 @@
+/**
+ * @name {{NAME}}
+ * @author AsterionVT (palette) - structure revised by GeeNuTz
+ * @version {{VERSION}}
+ * @description {{DESCRIPTION}}
+ * @source https://github.com/ClearVision/ClearVision-v7
+ * @website https://clearvision.github.io
+ */
+
+/* ==================== CLEARVISION BASE IMPORTS ==================== */
+@import url("https://clearvision.github.io/ClearVision-v7/main.css");
+@import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
+
+/* ==================== AETHERIS FONTS ==================== */
+@font-face {
+    font-family: "Meloso";
+    src: url("https://github.com/Quinxxxx/Meloso/blob/main/Meloso-Bold.ttf?raw=1") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Meloso";
+    src: url("https://github.com/Quinxxxx/Meloso/blob/main/Meloso-Medium.ttf?raw=1") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "RobotoCustom";
+    src: url("https://github.com/VodkaXMartini/images/raw/main/Roboto-Regular.ttf?raw=1") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+{{PALETTE}}
+/* ============================================================================
+ * 3. LAYERED SURFACES
+ *
+ *    ClearVision paints components with translucent shading over the app
+ *    background, so Discord's base variables must be translucent too: opaque
+ *    values erase the gradient and flatten the window (the old theme's bug).
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --background-primary: var(--aether-base);
+    --background-primary-alt: var(--aether-base);
+    --background-secondary: var(--aether-sidebar);
+    --background-secondary-alt: var(--aether-sidebar-alt);
+    --background-tertiary: var(--aether-tertiary);
+    --background-accent: var(--aether-accent-fill);
+    --background-floating: var(--aether-overlay);
+    --background-nested-floating: var(--aether-modal);
+    --background-mobile-primary: var(--aether-base);
+    --background-mobile-secondary: var(--aether-sidebar);
+    --home-background: transparent;
+
+    /* Discord's newer surface names (settings, sheets, cards). */
+    --bg-base-primary: var(--aether-base);
+    --bg-base-secondary: var(--aether-sidebar);
+    --bg-base-tertiary: var(--aether-tertiary);
+    --bg-base-lowest: rgba(3, 0, 12, 0.92);
+    --bg-base-lower: rgba(5, 1, 24, 0.88);
+    --bg-base-low: var(--aether-sidebar-alt);
+    --bg-surface-raised: var(--aether-raised);
+    --bg-surface-overlay: var(--aether-overlay);
+    --bg-surface-highest: rgba(23, 10, 77, 0.96);
+    --bg-space: transparent;
+    --bg-backdrop: rgba(2, 0, 12, 0.78);
+
+    /* Cards, embeds, code, uploads: the raised step, not the canvas. */
+    --card-primary-bg: rgba(11, 4, 48, 0.72);
+    --card-secondary-bg: var(--aether-raised);
+    --embed-background: var(--aether-raised);
+    --embed-background-alternate: rgba(11, 4, 48, 0.8);
+    --activity-card-background: rgba(11, 4, 48, 0.8);
+    --background-code: rgba(5, 0, 24, 0.7);
+    --background-code-addition: rgba(36, 122, 82, 0.22);
+    --background-code-deletion: rgba(199, 62, 96, 0.22);
+    --channeltextarea-background: var(--aether-input);
+    --chat-input-background: var(--aether-input);
+
+    /* ClearVision shading layers: same hues as the canvas, tuned per surface so
+       the gradient glows through instead of being covered by flat fills. */
+    --background-shading: var(--aether-shading);
+    --card-shading: var(--aether-shading-card);
+    --popout-shading: var(--aether-overlay);
+    --modal-shading: var(--aether-modal);
+    --input-shading: var(--aether-shading-input);
+}
+
+/* ============================================================================
+ * 4. TEXT
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    /* ClearVision's source variables: Discord's --text-* derive from them. */
+    --normal-text: var(--aether-text);
+    --muted-text: var(--aether-text-muted);
+
+    /* Explicit ramp, so nothing falls back to Discord's gray. */
+    --text-strong: var(--aether-text-strong);
+    --text-default: var(--aether-text);
+    --text-primary: var(--aether-text);
+    --text-normal: var(--aether-text);
+    --text-secondary: var(--aether-text-soft);
+    --text-tertiary: var(--aether-text-muted);
+    --text-subtle: var(--aether-text-muted);
+    --text-muted: var(--aether-text-muted);
+    --text-link: var(--aether-accent-soft);
+    --text-brand: var(--aether-accent-soft);
+    --text-feedback-positive: var(--aether-success);
+    --text-feedback-warning: var(--aether-warning);
+    --text-feedback-critical: var(--aether-danger);
+    --text-feedback-info: var(--aether-info);
+    --text-positive: var(--aether-success);
+    --text-warning: var(--aether-warning);
+    --text-danger: var(--aether-danger);
+
+    --header-primary: var(--aether-text-strong);
+    --header-secondary: var(--aether-text-soft);
+    --channels-default: var(--channel-normal);
+    --channel-icon: var(--channel-normal);
+
+    --interactive-normal: #c9b6f2;
+    --interactive-hover: #e2d9f8;
+    --interactive-active: #ffffff;
+    --interactive-muted: #9b86cc;
+    --interactive-text-default: #c9b6f2;
+    --interactive-text-hover: #e2d9f8;
+    --interactive-text-active: #ffffff;
+    --interactive-icon-default: #c9b6f2;
+    --interactive-icon-hover: #e2d9f8;
+    --interactive-icon-active: #ffffff;
+}
+
+/* Titles, usernames and headers use Aetheris's display face; body text does not. */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --font-display: "Meloso", "RobotoCustom", "gg sans", "Helvetica Neue", sans-serif;
+}
+
+/* ============================================================================
+ * 5. ACCENT RAMPS
+ *
+ *    Discord's --brand-* / --primary-* are a full 100-900 ramp used by hundreds
+ *    of components. Left at Discord's default they are blurple: that is where
+ *    stray blue controls come from. The ramp is mapped onto the Aetheris hues.
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --brand-100: #f5efff;
+    --brand-130: #ece0ff;
+    --brand-160: #dfcaff;
+    --brand-200: #cdb0ff;
+    --brand-230: #b993ff;
+    --brand-260: #a97dff;
+    --brand-300: #9a68f7;
+    --brand-330: #8b52ee;
+    --brand-345: #8046e6;
+    --brand-360: #7636d8; /* filled brand surface: white 6.38:1 */
+    --brand-400: #6f37d2;
+    --brand-430: #6a2fc8;
+    --brand-460: #632ab8;
+    --brand-500: #5a23a8;
+    --brand-560: #54209c;
+    --brand-600: #4d1a92;
+    --brand-630: #451683;
+    --brand-645: #3d1274;
+    --brand-660: #350f66;
+    --brand-700: #2c0b56;
+    --brand-730: #cbadff;
+    --brand-760: #b896f5;
+    --brand-800: #8f6fd0;
+    --brand-860: #6a4ba8;
+    --brand-900: #40206e;
+
+    --brand-experiment: var(--aether-accent-fill);
+    --brand-experiment-100: #f5efff;
+    --brand-experiment-130: #ece0ff;
+    --brand-experiment-160: #dfcaff;
+    --brand-experiment-200: #cdb0ff;
+    --brand-experiment-230: #b993ff;
+    --brand-experiment-260: #a97dff;
+    --brand-experiment-300: #9a68f7;
+    --brand-experiment-330: #8b52ee;
+    --brand-experiment-360: #7636d8;
+    --brand-experiment-400: #6f37d2;
+    --brand-experiment-430: #6a2fc8;
+    --brand-experiment-460: #632ab8;
+    --brand-experiment-500: #5a23a8;
+    --brand-experiment-560: #54209c;
+    --brand-experiment-600: #4d1a92;
+    --brand-experiment-630: #451683;
+    --brand-experiment-645: #3d1274;
+    --brand-experiment-660: #350f66;
+    --brand-experiment-700: #2c0b56;
+    --brand-experiment-730: #cbadff;
+    --brand-experiment-800: #8f6fd0;
+    --brand-experiment-860: #6a4ba8;
+    --brand-experiment-900: #40206e;
+
+    /* Alpha variants: Discord ships these as literal blurple rgba values, so
+       roles, selected reactions and keyboard-focus rings stay blue unless set. */
+    --brand-experiment-05a: rgba(147, 96, 240, 0.05);
+    --brand-experiment-10a: rgba(147, 96, 240, 0.1);
+    --brand-experiment-15a: rgba(147, 96, 240, 0.15);
+    --brand-experiment-20a: rgba(147, 96, 240, 0.2);
+    --brand-experiment-24a: rgba(147, 96, 240, 0.24);
+    --brand-experiment-30a: rgba(147, 96, 240, 0.3);
+    --brand-experiment-40a: rgba(147, 96, 240, 0.4);
+    --brand-experiment-50a: rgba(147, 96, 240, 0.5);
+    --brand-experiment-60a: rgba(147, 96, 240, 0.6);
+
+    --primary-100: #f2ecff;
+    --primary-130: #e9dcff;
+    --primary-160: #ddd0ff;
+    --primary-200: #cfc0f0;
+    --primary-230: #bda6ec;
+    --primary-260: #ad92e3;
+    --primary-300: #9c7ed9;
+    --primary-330: #8b6bcf;
+    --primary-360: #7a58c4;
+    --primary-400: #6946b8;
+    --primary-430: #58389f;
+    --primary-460: #4a2d8a;
+    --primary-500: #3d2375;
+    --primary-530: #331d63;
+    --primary-560: #2a1852;
+    --primary-600: #221341;
+    --primary-630: #1a0f33;
+    --primary-645: #170d2d;
+    --primary-660: #140b27;
+    --primary-700: #0f0820;
+    --primary-730: #0b0518;
+    --primary-760: #080315;
+    --primary-800: #060112;
+    --primary-830: #04000e;
+    --primary-860: #03000b;
+    --primary-900: #020008;
+}
+
+/* ============================================================================
+ * 6. STATUS & SEMANTIC
+ *
+ *    Discord reuses one variable for "coloured text" and "filled button with a
+ *    white label". No single colour serves both, so text-safe values live here
+ *    and the filled-button corrections are in section 8.1.
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --status-online: var(--aether-success);
+    --status-idle: var(--aether-warning);
+    --status-dnd: var(--aether-danger);
+    --status-offline: var(--aether-text-dim);
+    --status-streaming: var(--aether-accent-soft);
+    --status-danger: var(--aether-danger-fill);
+    --status-danger-background: #2a0616;
+    --status-positive: var(--aether-success-fill);
+    --status-positive-background: #04231a;
+    --status-warning: var(--aether-warning);
+    --status-warning-background: #2a1b04;
+
+    --red-400: var(--aether-danger);
+    --red-430: #f2607d;
+    --red-500: #e04f6e;
+    --red-560: var(--aether-danger-fill);
+    --green-360: var(--aether-success);
+    --green-400: #3fd39a;
+    --green-500: #35c48c;
+    --green-560: var(--aether-success-fill);
+    --yellow-300: #ffd493;
+    --yellow-360: var(--aether-warning);
+
+    --info-positive-foreground: var(--aether-success);
+    --info-warning-foreground: var(--aether-warning);
+    --info-danger-foreground: var(--aether-danger);
+    --info-help-foreground: var(--aether-info);
+    --info-positive-background: rgba(36, 122, 82, 0.18);
+    --info-warning-background: rgba(249, 196, 107, 0.14);
+    --info-danger-background: rgba(199, 62, 96, 0.18);
+}
+
+/* ============================================================================
+ * 7. BORDERS & MODIFIERS
+ *
+ *    Purple-tinted hairlines instead of Discord's neutral white alphas: they are
+ *    what separates one deep-purple plane from the next.
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --border-faint: var(--aether-accent-dim);
+    --border-subtle: rgba(147, 96, 240, 0.24);
+    --border-normal: rgba(147, 96, 240, 0.3);
+    --border-strong: rgba(147, 96, 240, 0.42);
+    --border-muted: rgba(147, 96, 240, 0.14);
+
+    --background-modifier-hover: rgba(147, 96, 240, 0.1);
+    --background-modifier-active: rgba(147, 96, 240, 0.16);
+    --background-modifier-selected: rgba(147, 96, 240, 0.22);
+    --background-modifier-accent: rgba(147, 96, 240, 0.12);
+    --background-modifier-border: rgba(147, 96, 240, 0.18);
+    --background-message-hover: rgba(147, 96, 240, 0.06);
+
+    --scrollbar-auto-thumb: #6a3fc0;
+    --scrollbar-auto-thumb-hover: #8355d8;
+    --scrollbar-auto-track: transparent;
+    --scrollbar-thin-thumb: #6a3fc0;
+    --scrollbar-thin-track: transparent;
+
+    --focus-primary: var(--aether-accent-soft);
+    --input-background: rgba(11, 4, 48, 0.78);
+    --modal-background: var(--aether-modal);
+    --modal-footer-background: rgba(9, 2, 34, 0.96);
+}
+
+/* ============================================================================
+ * 8. COMPONENT FIXES
+ *
+ *    Only the cases a variable cannot reach. Selectors match both the `name_hash`
+ *    and `name-hash` class conventions, so a Discord class rename degrades to
+ *    "this rule stops matching" instead of painting the wrong thing.
+ * ========================================================================== */
+
+/* --- 8.1 Filled buttons -------------------------------------------------
+ * ClearVision paints brand/green/red buttons with the *text* accents, leaving
+ * white labels at 1.9-4.1:1. Filled surfaces get the darker shades; outlines,
+ * links and icons keep the bright ones. */
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorBrand_"],
+        [class*="colorBrand-"],
+        [class*="colorPrimary_"],
+        [class*="colorPrimary-"]
+    ) {
+    background-color: var(--aether-accent-fill);
+    color: var(--aether-on-accent);
+}
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorBrand_"],
+        [class*="colorBrand-"],
+        [class*="colorPrimary_"],
+        [class*="colorPrimary-"]
+    ):hover {
+    background-color: var(--aether-accent-hover);
+}
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorRed_"],
+        [class*="colorRed-"],
+        [class*="colorDanger_"],
+        [class*="colorDanger-"]
+    ) {
+    background-color: var(--aether-danger-fill);
+    color: var(--aether-on-accent);
+}
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorGreen_"],
+        [class*="colorGreen-"],
+        [class*="colorSuccess_"],
+        [class*="colorSuccess-"]
+    ) {
+    background-color: var(--aether-success-fill);
+    color: var(--aether-on-accent);
+}
+
+/* --- 8.2 Mentions -------------------------------------------------------
+ * The old file washed mentioned rows in maroon (rgba(114, 0, 0, .15)) and left
+ * the inline pill as light text on #9360f0 (3.1:1). Both are purple now. */
+:is([class*="mentioned_"], [class*="mentioned-"]) {
+    --background-mentioned: hsl(from var(--main-color) h s l / 0.16);
+    --background-mentioned-hover: hsl(from var(--hover-color) h s l / 0.22);
+    /* Inset rail instead of border-left: a border would shift the row 2px. */
+    box-shadow: inset 2px 0 0 var(--main-color);
+}
+
+:is([class^="mention_"], [class*=" mention_"], [class^="mention-"], [class*=" mention-"]) {
+    background-color: var(--aether-accent-fill);
+    color: var(--aether-mention-text);
+}
+:is([class^="mention_"], [class*=" mention_"], [class^="mention-"], [class*=" mention-"]):hover {
+    background-color: var(--aether-accent-hover);
+}
+/* ClearVision's role/channel mention wrapper. The hash is pinned to the build
+   ClearVision 7.0.1 targets; if Discord renames it, this rule stops matching
+   and the pill falls back to --aether-accent-fill with --text-default text. */
+[class*="NDaLCQ"] {
+    background-color: var(--aether-accent-fill);
+    color: var(--aether-mention-text);
+}
+
+/* --- 8.3 Structure: depth where variables cannot reach -------------------
+ * Hairlines make the rails read as separate planes; without them every panel
+ * is the same #080228 and the layout looks flat. */
+:is([class*="guilds_"], [class*="guilds-"]) {
+    background-color: var(--aether-void);
+    border-right: 1px solid var(--aether-accent-dim);
+}
+
+:is([class*="sidebar_"], [class*="sidebar-"]) {
+    border-right: 1px solid var(--aether-accent-dim);
+}
+
+:is([class*="members_"], [class*="members-"]) {
+    border-left: 1px solid var(--aether-accent-dim);
+}
+
+/* Chat canvas: faint top glow, so the message column is not a void. */
+:is([class*="chat_"], [class*="chat-"]) {
+    background-image: radial-gradient(circle 620px at 50% -10%, rgba(147, 96, 240, 0.1), transparent 70%);
+}
+
+/* --- 8.4 Channels -------------------------------------------------------
+ * The selected pill is drawn by ClearVision as a ::before behind the label, and
+ * its colours come from --channel-selected / --channel-selected-bg (section 2):
+ * dark label on the bright accent, 4.79:1, and the signature colour survives. */
+:is([class*="modeUnread_"], [class*="modeUnread-"]) :is([class*="name_"], [class*="name-"]) {
+    color: var(--channel-unread);
+    font-weight: 600;
+}
+
+/* --- 8.5 Chat input -----------------------------------------------------
+ * Sits on the raised step with an accent rim, instead of the near-black
+ * #0c0c0e box that read as a hole punched through the window. */
+:is([class*="channelTextArea_"], [class*="channelTextArea-"]) {
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px var(--border-subtle), 0 4px 18px rgba(2, 0, 12, 0.45);
+}
+:is([class*="channelTextArea_"], [class*="channelTextArea-"]):focus-within {
+    box-shadow: 0 0 0 1px var(--main-color), 0 0 18px var(--aether-glow);
+}

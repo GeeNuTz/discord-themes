@@ -1,0 +1,117 @@
+/* ============================================================================
+ * 1. AETHERIS TOKENS
+ *
+ *    Single source of truth. Surface tokens carry their alpha on purpose: they
+ *    are composited over the app gradient, never painted flat.
+ *    Contrast for this exact file is generated into docs/CONTRAST.md: every
+ *    text pair is measured against the brightest pixel its background can produce.
+ * ========================================================================== */
+:root {
+    /* Surfaces, ascending: rail -> base -> sidebar -> raised -> overlay. */
+    --aether-void: rgba(4, 0, 16, 0.9);
+    --aether-base: rgba(10, 3, 46, 0.64);
+    --aether-sidebar: rgba(7, 1, 32, 0.74);
+    --aether-sidebar-alt: rgba(5, 1, 26, 0.7);
+    --aether-tertiary: rgba(4, 0, 16, 0.84);
+    --aether-raised: rgba(14, 4, 56, 0.82);
+    --aether-overlay: rgba(17, 6, 61, 0.94);
+    --aether-modal: rgba(12, 4, 46, 0.96);
+    --aether-input: rgba(12, 4, 50, 0.86);
+
+    /* Accent family. The bright signature colour is decoration only. */
+    --aether-accent: #9360f0; /* pills, rings, borders, indicators */
+    --aether-accent-fill: #7636d8; /* fills that carry white text */
+    --aether-accent-hover: #6a2fc8; /* darker on hover */
+    --aether-accent-soft: #b48cff; /* accent as text */
+    --aether-accent-dim: rgba(147, 96, 240, 0.18); /* hairlines */
+    --aether-glow: rgba(147, 96, 240, 0.45);
+
+    /* Text ramp: strong -> dim, every step still legible. */
+    --aether-text-strong: #f7f2ff;
+    --aether-text: #e9dcff; /* body */
+    --aether-text-soft: #cdc0ee; /* secondary */
+    --aether-text-muted: #a08cd4; /* timestamps, placeholders */
+    --aether-text-dim: #8f79c6; /* offline / disabled */
+
+    /* Semantics, restored: *-fill are the darker shades behind white labels. */
+    --aether-danger: #ff7a94; /* destructive text */
+    --aether-danger-fill: #c73e60; /* destructive button fill */
+    --aether-success: #4ade9e; /* positive text */
+    --aether-success-fill: #247a52; /* confirm button fill */
+    --aether-warning: #f9c46b; /* warning text */
+    --aether-info: #8fc9ff; /* info text */
+
+    /* ClearVision shading layers: same hues as the canvas, tuned per surface. */
+    --aether-shading: rgba(7, 1, 30, 0.62);
+    --aether-shading-card: rgba(11, 4, 48, 0.58);
+    --aether-shading-input: rgba(11, 4, 48, 0.78);
+
+    /* Labels that sit on a filled accent surface. */
+    --aether-on-accent: #ffffff;
+    --aether-mention-text: #f4efff;
+}
+
+/* ============================================================================
+ * 2. CLEARVISION SETTINGS
+ *
+ *    The knobs ClearVision reads. The comments are the theme's user contract:
+ *    change a value here, not further down.
+ * ========================================================================== */
+:root {
+    /* ACCENT COLORS */
+    --main-color: #9360f0; /* decoration only: pills, rings, dividers */
+    --hover-color: #a97dff; /* hover for text/icons */
+    --success-color: #4ade9e; /* positive text */
+    --danger-color: #ff7a94; /* destructive text */
+
+    /* STATUS COLORS */
+    --online-color: #4ade9e;
+    --idle-color: #f9c46b;
+    --dnd-color: #ff7a94;
+    --streaming-color: #b48cff;
+    --offline-color: #8f79c6; /* was #6e6a86 - invisible on deep purple */
+
+    /* APP BACKGROUND
+       A bounded purple gradient instead of a bitmap: no external asset, and the
+       brightest pixel is computable, so text contrast is provable.
+       Want it flat? Replace the whole --background-image value with `none`. */
+    --background-shading-percent: 100%;
+    --background-image:
+        radial-gradient(circle 1200px at 50% -8%, rgba(147, 96, 240, 0.18), rgba(147, 96, 240, 0) 66%),
+        radial-gradient(circle 900px at 14% 6%, rgba(147, 96, 240, 0.32), rgba(147, 96, 240, 0) 70%),
+        radial-gradient(circle 1100px at 88% 94%, rgba(80, 37, 252, 0.26), rgba(80, 37, 252, 0) 72%),
+        radial-gradient(circle 760px at 54% 48%, rgba(53, 0, 153, 0.34), rgba(53, 0, 153, 0) 74%),
+        linear-gradient(158deg, #0b0438 0%, #080228 44%, #05001c 100%);
+    --background-position: center;
+    --background-size: cover;
+    --background-attachment: fixed;
+    --background-filter: saturate(calc(var(--saturation-factor, 1) * 1.05));
+
+    /* USER POPOUT / MODAL BACKGROUND */
+    --user-popout-image: var(--background-image);
+    --user-popout-position: var(--background-position);
+    --user-popout-size: var(--background-size);
+    --user-popout-attachment: var(--background-attachment);
+    --user-popout-filter: var(--background-filter);
+    --user-modal-image: var(--background-image);
+    --user-modal-position: var(--background-position);
+    --user-modal-size: var(--background-size);
+    --user-modal-attachment: var(--background-attachment);
+    --user-modal-filter: var(--background-filter);
+
+    /* FONTS */
+    --main-font: "RobotoCustom", "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --code-font: Consolas, "gg mono", "Liberation Mono", Menlo, Courier, monospace;
+
+    /* CHANNEL COLORS */
+    --channel-normal: #c9b6f2; /* channel names */
+    --channel-muted: #9b86cc; /* muted channels */
+    --channel-hover: #e2d9f8;
+    --channel-selected: #12042c; /* dark label on the bright pill */
+    --channel-selected-bg: #9360f0; /* the signature pill stays saturated */
+    --channel-unread: #d9c9ff;
+    --channel-unread-hover: #ffffff;
+
+    /* ACCESSIBILITY */
+    --focus-color: var(--aether-accent-soft);
+}

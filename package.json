@@ -1,0 +1,13 @@
+{
+  "name": "aetheris-theme",
+  "version": "5.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Aetheris \u2014 deep-purple ClearVision v7 theme for Vencord / Vesktop",
+  "scripts": {
+    "test": "node --test test/",
+    "report": "node tools/report.mjs",
+    "preview": "node tools/preview.mjs",
+    "build": "node tools/build.mjs"
+  }
+}
