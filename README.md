@@ -221,6 +221,10 @@ The 4.x builds were "made with AI" in the author's own words; the 5.x work here 
 AI-assisted, reviewed and verified by the tests and screenshots above. If you reuse this, keep the
 palette credit to AsterionVT and the framework credit to ClearVision.
 
+## Repository
+
+https://github.com/GeeNuTz/aetheris-themes (private).
+
 ## Versioning
 
 `5.1.1` ships the three builds and is the base. `5.0.0` was the single-build rewrite (now
