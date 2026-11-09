@@ -102,7 +102,7 @@ check("no Cyrillic text in docs or themes", () => {
 });
 
 check("README images exist", () => {
-  const images = [...read("README.md").matchAll(/\((?:\.\/)?([a-z0-9-]+\/docs\/[^)]+\.(?:jpg|png))\)/g)].map((m) => m[1]);
+  const images = [...read("README.md").matchAll(/\((?:\.\/)?([A-Za-z0-9-]+\/docs\/[^)]+\.(?:jpg|png))\)/g)].map((m) => m[1]);
   assert(images.length >= list.length, `expected at least ${list.length} images, found ${images.length}`);
   const missing = images.filter((p) => !existsSync(join(root, p)));
   assert(missing.length === 0, `missing: ${missing.join(", ")}`);

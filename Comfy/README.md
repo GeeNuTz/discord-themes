@@ -8,7 +8,7 @@ ClearVision v7 theme for Vesktop/Vencord and a Revenge theme for mobile.**
 ## What it is
 
 Comfy is a Spicetify theme for Spotify; its `Deep` colourscheme is a near-black navy with muted
-teal text (`#4F9A87` on `#040614`). This repo carries that palette to Discord without changing its
+teal text (`#4F9A87` on `#040614`). This folder carries that palette to Discord without changing its
 character: same canvas, same sidebar and card values, same teal, same ember-red error colour.
 
 Two artifacts, generated from one palette:

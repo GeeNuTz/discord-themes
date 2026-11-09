@@ -1,19 +1,46 @@
 # Discord Themes
 
-**One repository for my Discord themes — desktop (ClearVision v7 for Vesktop/Vencord) and mobile
-(Revenge), each theme in its own folder with both release types.**
+**One repository, one folder per theme. Each theme ships a desktop build (for Vesktop / Vencord)
+and a mobile build (for Revenge), generated from the same palette.**
 
-Every theme is a colour design, not a layout design: ClearVision builds the interface and the
-theme supplies colour, canvas and type. Mobile themes reuse the same palette through Revenge's
-theme manifest, generated from the desktop stylesheet so the two clients cannot drift.
+```
+Aetheris/     Aetheris, Aetheris BG, Aetheris Deep + one Revenge manifest each
+Comfy/        Comfy Deep + its Revenge manifest
+```
+
+## These themes are built on ClearVision — not standalone
+
+To be plain about it: the desktop files are **customisations of ClearVision v7**, they do not
+replace it. Every `.theme.css` here starts with
+
+```css
+@import url("https://clearvision.github.io/ClearVision-v7/main.css");
+@import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
+```
+
+and then overrides colour variables. So the split is:
+
+| ClearVision v7 | This repository |
+|---|---|
+| layout, spacing, rounded rails, component styling — the interface itself | colour, canvas, type stack — no layout rules of its own |
+| fetched by the client at runtime from `clearvision.github.io` | shipped as one file per build |
+
+ClearVision is the ClearVision Team's code under Apache-2.0. This repo does not copy, fork or vendor
+it — nothing of theirs lives in this checkout; the client downloads it when the theme loads. That is
+also why a theme needs that host: with ClearVision unreachable the file still applies, but you get a
+plain recoloured Discord without ClearVision's layout, not an error.
+
+Mobile is the same idea one step removed: Revenge builds Discord's interface itself, and a theme
+there is a JSON colour map (`spec: 2`). No ClearVision involved — which is why the mobile builds
+carry only the palette, generated from the desktop stylesheet so the two can't drift.
 
 | Theme | Folder | Desktop | Mobile | Palette |
 |---|---|---|---|---|
-| **Aetheris** | [`aetheris/`](aetheris/) | 3 builds: Aetheris, Aetheris BG, Aetheris Deep | 3 manifests, one per build | violet / indigo, AsterionVT's |
-| **Comfy Deep** | [`comfy-deep/`](comfy-deep/) | `ComfyDeep.theme.css` | `ComfyDeep-Revenge.json` | teal on near-black navy, from Comfy's `Deep` |
+| **Aetheris** | [`Aetheris/`](Aetheris/) | 3 builds: Aetheris, Aetheris BG, Aetheris Deep | 3 manifests, one per build | violet / indigo, AsterionVT's |
+| **Comfy** | [`Comfy/`](Comfy/) | `ComfyDeep.theme.css` | `ComfyDeep-Revenge.json` | teal on near-black navy, from Comfy's `Deep` |
 
-![Aetheris](aetheris/docs/screenshots/aetheris.jpg)
-![Comfy Deep](comfy-deep/docs/screenshots/comfy-deep.jpg)
+![Aetheris](Aetheris/docs/screenshots/aetheris.jpg)
+![Comfy](Comfy/docs/screenshots/comfy-deep.jpg)
 
 ## Layout
 
@@ -103,12 +130,12 @@ npm run verify    # that theme's artifact gate
 |---|---|
 | **AsterionVT** | The Aetheris palette and the original 4.0.0 theme (kept verbatim in `aetheris/docs/legacy/`). |
 | **Comfy Themes** | The `Deep` colourscheme from [Comfy for Spicetify](https://github.com/Comfy-Themes/Spicetify). The Comfy Deep port is their design, not mine. |
-| **ClearVision Team** | ClearVision v7, imported by every desktop theme at runtime. Not vendored. |
+| **ClearVision Team** | ClearVision v7 (Apache-2.0), the interface every desktop build is built on. Imported at runtime; not copied or vendored here. |
 | **Quinxxxx** | The Meloso typeface used by Aetheris. |
 | **Revenge** | The mobile client and its theme format, which this repo targets. |
 
 ## License
 
 MIT for this collection's own code and docs — see [LICENSE](LICENSE). Palettes belong to their
-authors (see Credits); ClearVision v7 and any bundled wallpaper belong to the ClearVision Team.
-Nothing third-party is redistributed here.
+authors (see Credits). ClearVision v7 is the ClearVision Team's, Apache-2.0, and is not
+redistributed here. Nothing third-party is vendored in this repository.

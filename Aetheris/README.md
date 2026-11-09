@@ -3,9 +3,12 @@
 **A deep-purple ClearVision v7 theme for Vencord / Vesktop, in three builds — AsterionVT's
 Aetheris palette, with text you can actually read.**
 
-Aetheris is a colour theme, not a layout theme: ClearVision builds the interface, these files
-supply every colour, gradient and typeface. The interesting part is not the hues — those are the
-original author's — but that each one now sits on a measured contrast pair instead of a guess.
+This is a **ClearVision v7 theme**: each file imports ClearVision's CSS and then overrides colour
+variables. ClearVision supplies the interface, these files supply only colour — no layout rules of
+their own. ClearVision is fetched by the client at runtime, not vendored here.
+
+The interesting part is not the hues — those are the original author's — but that each one sits on
+a measured contrast pair instead of a guess.
 
 ![The three builds](docs/screenshots/builds.jpg)
 

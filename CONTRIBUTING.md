@@ -18,7 +18,7 @@ One theme per folder at the root. A folder is self-contained: its own `src/`, `t
 in one theme imports from another; the root only aggregates.
 
 ```bash
-mkdir my-theme && cp -r comfy-deep/* my-theme/     # start from the closest match
+mkdir my-theme && cp -r Comfy/* my-theme/     # start from the closest match
 cd my-theme
 # replace src/palettes/<name>.css and src/variants.json
 npm run build && npm test && npm run report && npm run preview
