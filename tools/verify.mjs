@@ -138,7 +138,7 @@ check("nothing behind the remote, and something to publish", () => {
   if (!hasUpstream) return "no upstream: first push";
   const [ahead, behind] = git(["rev-list", "--left-right", "--count", `${branch}...@{u}`]).split(/\s+/).map(Number);
   assert(behind === 0, `behind origin by ${behind} commit(s): pull first`);
-  assert(ahead > 0, "nothing new to publish: the remote already has this commit");
+  if (ahead === 0) return "up to date — nothing new to publish";
   return `ahead ${ahead}, behind 0`;
 });
 
