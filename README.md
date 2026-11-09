@@ -44,13 +44,19 @@ imports from another. The root only aggregates.
 Then **Settings → Themes** on desktop and toggle it on. The list entry is the `@name` inside the
 file, not the filename — so two files with the same `@name` are indistinguishable.
 
-Revenge only installs from a URL, so a theme has to be reachable before the phone can use it. For a
-local test:
+### Mobile without a public repo
+
+Revenge installs a theme from a URL, and a private repo has no raw URL a phone can read. Serve the
+release files from this machine instead — same Wi-Fi, nothing public:
 
 ```bash
-cd comfy-deep && python3 -m http.server 8099
-# phone: http://<your-lan-ip>:8099/ComfyDeep-Revenge.json
+npm run serve            # http://<your-lan-ip>:8099/  (npm run serve -- 9000 for another port)
 ```
+
+Open that address on the phone, tap the theme, copy the link, paste it into
+**Revenge → Themes → +**. The server only serves released `.theme.css` and `-Revenge.json` files,
+read-only, and only inside the LAN — source, tests and docs return 404. Stop it with Ctrl-C once the
+theme is installed; Revenge keeps its copy.
 
 ## Every theme is measured
 

@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "node tools/all.mjs test",
-    "verify": "node tools/verify.mjs"
+    "verify": "node tools/verify.mjs",
+    "serve": "node tools/serve.mjs"
   }
 }

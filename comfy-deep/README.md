@@ -63,12 +63,16 @@ is published:
 Settings → Revenge → Themes → + → paste the raw URL of ComfyDeep-Revenge.json
 ```
 
-To try it before publishing, serve the file from your own machine and point Revenge at it:
+Because the repository is private, there is no raw URL a phone can read. Serve the file from your
+machine instead:
 
 ```bash
-python3 -m http.server 8099        # from the repo root
-# then, on the phone, use http://<your-lan-ip>:8099/ComfyDeep-Revenge.json
+cd ..            # collection root
+npm run serve    # prints http://<lan-ip>:8099/ and the exact JSON URLs
 ```
+
+On the phone: open that address, tap `ComfyDeep-Revenge.json`, copy the link, paste it into
+**Revenge → Themes → +**. LAN-only and read-only; stop the server once installed.
 
 The manifest sets `spec: 2` (the Vendetta format Revenge still parses), with both `semanticColors`
 and `rawColors` filled, so covered surfaces and uncovered ones land in the same family. Mobile

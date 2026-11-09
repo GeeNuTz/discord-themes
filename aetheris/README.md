@@ -235,8 +235,15 @@ palette credit to AsterionVT and the framework credit to ClearVision.
 vivid build's stylesheet so the two clients cannot drift. It carries the vivid palette only — the
 BG and Deep builds are desktop-only.
 
-Revenge installs themes from a URL, so publish or serve the file first; see the collection README
-for the local-server path used during testing.
+Revenge installs themes from a URL, so serve it from your machine first:
+
+```bash
+cd ..                 # collection root
+npm run serve         # prints http://<lan-ip>:8099/ and the exact JSON URLs
+```
+
+Open that address on the phone, tap `Aetheris-Revenge.json`, copy the link, paste it into
+**Revenge → Themes → +**. Nothing is published; the server is LAN-only and read-only.
 
 ## Changelog
 
