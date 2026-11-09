@@ -80,7 +80,7 @@ export function manifest(variant) {
   return {
     spec: 2,
     name: variant.name,
-    description: variant.description,
+    description: variant.mobileDescription ?? variant.description,
     authors: [{ name: "GeeNuTz" }],
     semanticColors: semantic,
     rawColors,

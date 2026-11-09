@@ -9,7 +9,7 @@ theme manifest, generated from the desktop stylesheet so the two clients cannot 
 
 | Theme | Folder | Desktop | Mobile | Palette |
 |---|---|---|---|---|
-| **Aetheris** | [`aetheris/`](aetheris/) | 3 builds: Aetheris, Aetheris BG, Aetheris Deep | `Aetheris-Revenge.json` | violet / indigo, AsterionVT's |
+| **Aetheris** | [`aetheris/`](aetheris/) | 3 builds: Aetheris, Aetheris BG, Aetheris Deep | 3 manifests, one per build | violet / indigo, AsterionVT's |
 | **Comfy Deep** | [`comfy-deep/`](comfy-deep/) | `ComfyDeep.theme.css` | `ComfyDeep-Revenge.json` | teal on near-black navy, from Comfy's `Deep` |
 
 ![Aetheris](aetheris/docs/screenshots/aetheris.jpg)
@@ -67,7 +67,7 @@ the theme's own `brightness()` filter. A pair under 4.5:1 fails the build. Repor
 
 | Theme | Checks |
 |---|---|
-| Aetheris | 56 — three builds + mobile manifest |
+| Aetheris | 65 — three builds + three mobile manifests |
 | Comfy Deep | 23 — stylesheet + mobile manifest |
 
 ## Development

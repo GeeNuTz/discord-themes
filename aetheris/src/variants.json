@@ -3,18 +3,21 @@
     "file": "Aetheris.theme.css",
     "name": "Aetheris",
     "palette": "aetheris",
-    "description": "Vivid Aetheris: full-strength purple gradient, layered surfaces, readable text. The default build."
+    "description": "Vivid Aetheris: full-strength purple gradient, layered surfaces, readable text. The default build.",
+    "mobileDescription": "Aetheris palette on mobile: violet canvas, readable lavender text."
   },
   {
     "file": "Aetheris-BG.theme.css",
     "name": "Aetheris BG",
     "palette": "aetheris-bg",
-    "description": "Aetheris over a purple-tinted wallpaper. Same palette, panels opaque enough that any wallpaper stays readable."
+    "description": "Aetheris over a purple-tinted wallpaper. Same palette, panels opaque enough that any wallpaper stays readable.",
+    "mobileDescription": "Aetheris BG palette on mobile. The wallpaper stays on desktop; this carries the colours."
   },
   {
     "file": "Aetheris-Deep.theme.css",
     "name": "Aetheris Deep",
     "palette": "aetheris-deep",
-    "description": "Aetheris Deep: the same palette pulled toward indigo, for late nights and OLED screens."
+    "description": "Aetheris Deep: the same palette pulled toward indigo, for late nights and OLED screens.",
+    "mobileDescription": "Aetheris Deep palette on mobile: the indigo build, flat surfaces."
   }
 ]

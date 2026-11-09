@@ -4,6 +4,22 @@ Aetheris is a ClearVision v7 theme for Vencord / Vesktop. Versions follow the
 palette, not ClearVision's own numbering; each entry states the ClearVision
 build it was written against.
 
+## 5.3.0 — 2026-11-09
+
+A mobile theme per build, not just the default one.
+
+### Added
+- `Aetheris-BG-Revenge.json` and `Aetheris-Deep-Revenge.json`: each desktop release
+  now has its own Revenge manifest, with that build's own name, canvas and text
+  ramp. Revenge installs one theme at a time, so a single manifest could only ever
+  represent one of the three.
+
+### Changed
+- `tools/build-revenge.mjs` renders every variant (`manifests()`), and
+  `tools/verify.mjs` requires one manifest per stylesheet.
+- Tests: 56 -> 65. Each manifest is checked for schema, generation drift, palette
+  equality against *its* stylesheet, and its own contrast pairs.
+
 ## 5.2.0 — 2026-11-09
 
 Mobile build, and a new home.

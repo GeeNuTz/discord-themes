@@ -39,9 +39,11 @@ check("tests pass", () => {
 check("shipped files match src/", () => {
   const drift = build({ write: false }).filter((b) => read(b.file) !== b.css);
   assert(drift.length === 0, `run npm run build: ${drift.map((b) => b.file).join(", ")}`);
-  const json = read("Aetheris-Revenge.json");
-  assert(json === renderJson(readVariants()[0]), "run npm run build: Aetheris-Revenge.json");
-  return `${readVariants().length} stylesheets + 1 manifest regenerated identically`;
+  for (const variant of readVariants()) {
+    const file = `${variant.file.replace(/\.theme\.css$/, "")}-Revenge.json`;
+    assert(read(file) === renderJson(variant), `run npm run build: ${file}`);
+  }
+  return `${readVariants().length} stylesheets + ${readVariants().length} manifests regenerated identically`;
 });
 
 check("version is consistent in four places", () => {
@@ -60,13 +62,13 @@ check("required files exist", () => {
     "version.json",
     "package.json",
     "Aetheris.theme.css",
-    "Aetheris-Revenge.json",
     "docs/CONTRAST.md",
     "src/theme.template.css",
   ];
-  const missing = required.filter((f) => !existsSync(join(repoRoot, f)));
+  const manifests = readVariants().map((v) => `${v.file.replace(/\.theme\.css$/, "")}-Revenge.json`);
+  const missing = [...required, ...manifests].filter((f) => !existsSync(join(repoRoot, f)));
   assert(missing.length === 0, `missing: ${missing.join(", ")}`);
-  return `${required.length} files`;
+  return `${required.length + manifests.length} files`;
 });
 
 check("README images exist and are not stale", () => {
@@ -86,7 +88,12 @@ check("README images exist and are not stale", () => {
 // --- Hygiene ----------------------------------------------------------------
 
 check("no secrets or personal paths", () => {
-  const files = ["README.md", "CHANGELOG.md", "Aetheris.theme.css", "Aetheris-Revenge.json", "docs/CONTRAST.md"];
+  const files = [
+    "README.md",
+    "CHANGELOG.md",
+    "docs/CONTRAST.md",
+    ...readVariants().flatMap((v) => [v.file, `${v.file.replace(/\.theme\.css$/, "")}-Revenge.json`]),
+  ];
   const patterns = [
     [/gh[pousr]_[A-Za-z0-9]{20,}/, "GitHub token"],
     [/github_pat_[A-Za-z0-9_]{20,}/, "fine-grained token"],

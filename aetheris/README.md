@@ -176,7 +176,7 @@ captures with other users' display names; they are replaced, and remain only in 
 ```bash
 cd aetheris
 npm run build       # src/theme.template.css + src/palettes/*.css -> three stylesheets + the manifest
-npm test            # 56 checks across the three builds and the manifest
+npm test            # 65 checks: three builds + three manifests
 npm run report      # regenerates docs/CONTRAST.md for all builds
 npm run preview     # regenerates docs/preview*.html from the shipped files
 ```
@@ -195,7 +195,7 @@ matches what `npm run build` would produce.
 | `test/` | the contract, dependency-free |
 | `tools/` | `build.mjs`, `report.mjs`, `preview.mjs` |
 | `docs/legacy/Aetheris-4.0.0.css` | the previous build, verbatim, for diffing |
-| `tools/build-revenge.mjs` | renders `Aetheris-Revenge.json` from the shipped stylesheet |
+| `tools/build-revenge.mjs` | renders one `-Revenge.json` per build from the shipped stylesheets |
 
 | Suite | Checks |
 |---|---|
@@ -225,24 +225,32 @@ palette credit to AsterionVT and the framework credit to ClearVision.
 
 ## Versioning
 
-`5.1.1` ships the three builds and is the base. `5.0.0` was the single-build rewrite (now
+`5.3.0` ships the three builds plus one mobile manifest each, and is the base. `5.0.0` was the single-build rewrite (now
 `Aetheris Deep`'s palette); `4.0.0` is kept verbatim in
 [docs/legacy/Aetheris-4.0.0.css](docs/legacy/Aetheris-4.0.0.css).
 
 ## Mobile (Revenge)
 
-`Aetheris-Revenge.json` is the same palette as a Revenge theme (`spec: 2`), generated from the
-vivid build's stylesheet so the two clients cannot drift. It carries the vivid palette only — the
-BG and Deep builds are desktop-only.
+Each build has its own manifest, generated from that build's stylesheet so the two clients cannot
+drift. Revenge installs one theme at a time, so this is three separate installs:
 
-Revenge installs themes from a URL, so serve it from your machine first:
+| Desktop build | Mobile manifest |
+|---|---|
+| `Aetheris.theme.css` | `Aetheris-Revenge.json` |
+| `Aetheris-BG.theme.css` | `Aetheris-BG-Revenge.json` |
+| `Aetheris-Deep.theme.css` | `Aetheris-Deep-Revenge.json` |
+
+They appear in Revenge as **Aetheris**, **Aetheris BG** and **Aetheris Deep** — the `name` field
+inside each file, same as on desktop.
+
+Revenge installs from a URL, so serve them from your machine first:
 
 ```bash
 cd ..                 # collection root
-npm run serve         # prints http://<lan-ip>:8099/ and the exact JSON URLs
+npm run serve         # prints http://<lan-ip>:8099/ and every JSON URL
 ```
 
-Open that address on the phone, tap `Aetheris-Revenge.json`, copy the link, paste it into
+Open that address on the phone, tap the manifest you want, copy the link, paste it into
 **Revenge → Themes → +**. Nothing is published; the server is LAN-only and read-only.
 
 ## Changelog

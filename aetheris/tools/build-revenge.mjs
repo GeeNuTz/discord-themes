@@ -1,5 +1,9 @@
-// Generates Aetheris-Revenge.json (the mobile client's theme format) from the
-// same palette the desktop CSS uses, so the two cannot drift.
+// Generates one Revenge manifest per desktop release (the mobile client's theme
+// format), from the same palette the desktop CSS uses, so the two cannot drift.
+//
+//   Aetheris.theme.css      -> Aetheris-Revenge.json
+//   Aetheris-BG.theme.css   -> Aetheris-BG-Revenge.json
+//   Aetheris-Deep.theme.css -> Aetheris-Deep-Revenge.json
 //
 // Format reference: revenge-mod/revenge-bundle, src/lib/addons/themes/colors/types.ts
 //   VendettaThemeManifest { spec: 2, name, description, authors,
@@ -19,8 +23,8 @@ import { readVariants } from "./build.mjs";
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const version = () => JSON.parse(readFileSync(join(repoRoot, "version.json"), "utf8")).version;
 
-// Discord's raw palette ramp, derived from the Aetheris teal so that anything
-// the semantic map does not cover still lands in the right family.
+// Discord's raw palette ramp, taken from the build's own --brand-* steps so that
+// anything the semantic map does not cover still lands in the right family.
 const RAMP_STEPS = [100, 130, 160, 200, 230, 260, 300, 330, 360, 400, 430, 460, 500, 560, 600, 630, 645, 660, 700, 730, 760, 800, 830, 860, 900];
 
 export function manifest(variant) {
@@ -81,7 +85,9 @@ export function manifest(variant) {
   return {
     spec: 2,
     name: variant.name,
-    description: variant.description,
+    // A mobile manifest cannot paint a gradient or a wallpaper, so the BG/Deep
+    // builds describe what the phone actually receives.
+    description: variant.mobileDescription ?? variant.description,
     authors: [{ name: "GeeNuTz" }],
     semanticColors: semantic,
     rawColors,
@@ -92,14 +98,23 @@ export function render(variant) {
   return `${JSON.stringify(manifest(variant), null, 2)}\n`;
 }
 
+/** Aetheris-BG.theme.css -> Aetheris-BG-Revenge.json */
+export function revengeFile(variant) {
+  return `${variant.file.replace(/\.theme\.css$/, "")}-Revenge.json`;
+}
+
+/** Every build gets its own manifest, because Revenge installs one theme at a time. */
+export function manifests() {
+  return readVariants().map((variant) => ({ variant, file: revengeFile(variant), json: render(variant) }));
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const variant = readVariants()[0];
-  const json = render(variant);
-  const out = join(repoRoot, "Aetheris-Revenge.json");
-  if (process.argv.includes("--check")) {
-    console.log(json);
-  } else {
-    writeFileSync(out, json);
-    console.log(`Aetheris-Revenge.json  ${variant.name}  v${version()}  ${(json.length / 1024).toFixed(1)} kB`);
+  for (const { variant, file, json } of manifests()) {
+    if (process.argv.includes("--check")) {
+      console.log(json);
+      continue;
+    }
+    writeFileSync(join(repoRoot, file), json);
+    console.log(`${file.padEnd(30)} ${variant.name.padEnd(14)} v${version()}  ${(json.length / 1024).toFixed(1)} kB`);
   }
 }

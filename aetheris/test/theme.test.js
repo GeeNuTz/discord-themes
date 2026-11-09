@@ -33,9 +33,6 @@ const repoRoot = join(here, "..");
 const versionJson = JSON.parse(readFileSync(join(repoRoot, "version.json"), "utf8"));
 const variants = readVariants();
 
-const REVENGE = join(repoRoot, "Aetheris-Revenge.json");
-const revenge = JSON.parse(readFileSync(REVENGE, "utf8"));
-
 const themes = variants.map((variant) => ({
   ...variant,
   path: join(repoRoot, variant.file),
@@ -239,47 +236,63 @@ test("the flat fallback canvas stays dark enough for the text ramp", () => {
   }
 });
 
-// --- Revenge manifest (mobile) ----------------------------------------------
+// --- Revenge manifests (mobile): one per build ---------------------------------
 
-test("the Revenge manifest is a valid spec-2 theme", () => {
-  assert.equal(revenge.spec, 2, "Revenge parses spec 2 (Vendetta format)");
-  assert.equal(revenge.name, variants[0].name, "the manifest carries the default build's name");
-  assert.ok(Array.isArray(revenge.authors) && revenge.authors.length > 0);
-  const hexes = [...Object.values(revenge.semanticColors).flat(), ...Object.values(revenge.rawColors ?? {})].filter(Boolean);
-  assert.ok(hexes.length >= 30);
-  for (const value of hexes) assert.match(value, /^#[0-9a-f]{6}$/i, `bad hex: ${value}`);
-});
+const manifests = variants.map((variant) => ({
+  variant,
+  file: `${variant.file.replace(/\.theme\.css$/, "")}-Revenge.json`,
+  json: JSON.parse(readFileSync(join(repoRoot, `${variant.file.replace(/\.theme\.css$/, "")}-Revenge.json`), "utf8")),
+  theme: themes.find((t) => t.file === variant.file).theme,
+}));
 
-test("the Revenge manifest is generated, not hand-edited", () => {
-  assert.equal(readFileSync(REVENGE, "utf8"), renderJson(variants[0]), "run npm run build");
-});
+for (const { variant, file, json, theme: buildTheme } of manifests) {
+  test(`${variant.name}: the Revenge manifest is a valid spec-2 theme`, () => {
+    assert.equal(json.spec, 2, "Revenge parses spec 2 (Vendetta format)");
+    assert.equal(json.name, variant.name, `${file} carries its own build name`);
+    assert.ok(Array.isArray(json.authors) && json.authors.length > 0);
+    const hexes = [...Object.values(json.semanticColors).flat(), ...Object.values(json.rawColors ?? {})].filter(Boolean);
+    assert.ok(hexes.length >= 30);
+    for (const value of hexes) assert.match(value, /^#[0-9a-f]{6}$/i, `bad hex: ${value}`);
+  });
 
-test("the Revenge manifest uses the palette from the stylesheet", () => {
-  const painted = new Set(
-    [...themes[0].theme.vars.keys()]
-      .filter((n) => /^(#|rgba?\()/i.test(themes[0].theme.resolve(n)))
-      .map((n) => toHex(themes[0].theme.colorOf(n)).toLowerCase()),
-  );
-  const missing = Object.entries(revenge.semanticColors)
-    .flatMap(([key, values]) => (values[0] ? [[key, values[0].toLowerCase()]] : []))
-    .filter(([, value]) => !painted.has(value));
-  assert.deepEqual(missing.map(([k, v]) => `${k}=${v}`), []);
-});
+  test(`${variant.name}: the Revenge manifest is generated, not hand-edited`, () => {
+    assert.equal(readFileSync(join(repoRoot, file), "utf8"), renderJson(variant), "run npm run build");
+  });
 
-test("the Revenge manifest is readable", () => {
-  const s = revenge.semanticColors;
-  const pairs = [
-    ["TEXT_NORMAL", "BACKGROUND_PRIMARY", AA.body],
-    ["TEXT_MUTED", "BACKGROUND_PRIMARY", AA.normal],
-    ["TEXT_MUTED", "BACKGROUND_SECONDARY", AA.normal],
-    ["HEADER_PRIMARY", "BACKGROUND_SECONDARY", AA.body],
-    ["TEXT_LINK", "BACKGROUND_PRIMARY", AA.normal],
-    ["HEADER_SECONDARY", "BACKGROUND_SECONDARY", AA.normal],
-  ];
-  const failures = pairs
-    .map(([fg, bg, min]) => [fg, bg, contrast(s[fg][0], s[bg][0]), min])
-    .filter(([, , ratio, min]) => ratio < min)
-    .map(([fg, bg, ratio, min]) => `${fg} on ${bg} = ${ratio.toFixed(2)} < ${min}`);
-  assert.deepEqual(failures, []);
-  assert.ok(contrast("#ffffff", s.BACKGROUND_ACCENT[0]) >= AA.normal, "white on the accent fill");
+  test(`${variant.name}: the Revenge manifest uses this build's palette`, () => {
+    const painted = new Set(
+      [...buildTheme.vars.keys()]
+        .filter((n) => /^(#|rgba?\()/i.test(buildTheme.resolve(n)))
+        .map((n) => toHex(buildTheme.colorOf(n)).toLowerCase()),
+    );
+    const missing = Object.entries(json.semanticColors)
+      .flatMap(([key, values]) => (values[0] ? [[key, values[0].toLowerCase()]] : []))
+      .filter(([, value]) => !painted.has(value));
+    assert.deepEqual(missing.map(([k, v]) => `${k}=${v}`), []);
+  });
+
+  test(`${variant.name}: the Revenge manifest is readable`, () => {
+    const s = json.semanticColors;
+    const pairs = [
+      ["TEXT_NORMAL", "BACKGROUND_PRIMARY", AA.body],
+      ["TEXT_MUTED", "BACKGROUND_PRIMARY", AA.normal],
+      ["TEXT_MUTED", "BACKGROUND_SECONDARY", AA.normal],
+      ["HEADER_PRIMARY", "BACKGROUND_SECONDARY", AA.body],
+      ["TEXT_LINK", "BACKGROUND_PRIMARY", AA.normal],
+      ["HEADER_SECONDARY", "BACKGROUND_SECONDARY", AA.normal],
+    ];
+    const failures = pairs
+      .map(([fg, bg, min]) => [fg, bg, contrast(s[fg][0], s[bg][0]), min])
+      .filter(([, , ratio, min]) => ratio < min)
+      .map(([fg, bg, ratio, min]) => `${fg} on ${bg} = ${ratio.toFixed(2)} < ${min}`);
+    assert.deepEqual(failures, []);
+    assert.ok(contrast("#ffffff", s.BACKGROUND_ACCENT[0]) >= AA.normal, "white on the accent fill");
+  });
+}
+
+test("every build ships a mobile manifest", () => {
+  const files = manifests.map((m) => m.file);
+  assert.equal(files.length, variants.length, "one manifest per stylesheet");
+  for (const file of files) assert.ok(existsSync(join(repoRoot, file)), `${file} exists`);
+  assert.equal(new Set(manifests.map((m) => m.json.name)).size, variants.length, "manifest names are distinct");
 });
