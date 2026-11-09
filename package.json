@@ -1,18 +1,15 @@
 {
-  "name": "aetheris-themes",
-  "version": "5.1.1",
+  "name": "discord-themes",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Aetheris \u2014 deep-purple ClearVision v7 theme for Vencord / Vesktop",
-  "scripts": {
-    "test": "node --test test/theme.test.js",
-    "report": "node tools/report.mjs",
-    "preview": "node tools/preview.mjs",
-    "build": "node tools/build.mjs"
-  },
+  "description": "GeeNuTz's Discord theme collection: ClearVision themes for Vesktop/Vencord and Revenge themes for mobile",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GeeNuTz/aetheris-themes"
+    "url": "https://github.com/GeeNuTz/discord-themes"
   },
-  "homepage": "https://github.com/GeeNuTz/aetheris-themes#readme"
+  "scripts": {
+    "test": "node tools/all.mjs test",
+    "verify": "node tools/verify.mjs"
+  }
 }

@@ -1,0 +1,126 @@
+{
+  "spec": 2,
+  "name": "Aetheris",
+  "description": "Vivid Aetheris: full-strength purple gradient, layered surfaces, readable text. The default build.",
+  "authors": [
+    {
+      "name": "GeeNuTz"
+    }
+  ],
+  "semanticColors": {
+    "BACKGROUND_PRIMARY": [
+      "#26125e"
+    ],
+    "BACKGROUND_SECONDARY": [
+      "#1e0e50"
+    ],
+    "BACKGROUND_SECONDARY_ALT": [
+      "#1e0e4c"
+    ],
+    "BACKGROUND_TERTIARY": [
+      "#0f062b"
+    ],
+    "BACKGROUND_ACCENT": [
+      "#7636d8"
+    ],
+    "BACKGROUND_FLOATING": [
+      "#260b7a"
+    ],
+    "BACKGROUND_NESTED_FLOATING": [
+      "#1e0961"
+    ],
+    "BACKGROUND_MOBILE_PRIMARY": [
+      "#26125e"
+    ],
+    "BACKGROUND_MOBILE_SECONDARY": [
+      "#1e0e50"
+    ],
+    "TEXT_NORMAL": [
+      "#f0e6ff"
+    ],
+    "TEXT_MUTED": [
+      "#bda6ea"
+    ],
+    "TEXT_LINK": [
+      "#bb98ff"
+    ],
+    "TEXT_BRAND": [
+      "#bb98ff"
+    ],
+    "TEXT_DANGER": [
+      "#ff7f96"
+    ],
+    "HEADER_PRIMARY": [
+      "#fbf6ff"
+    ],
+    "HEADER_SECONDARY": [
+      "#dccbfa"
+    ],
+    "INTERACTIVE_NORMAL": [
+      "#d5c0ff"
+    ],
+    "INTERACTIVE_HOVER": [
+      "#ece2ff"
+    ],
+    "INTERACTIVE_ACTIVE": [
+      "#ffffff"
+    ],
+    "INTERACTIVE_MUTED": [
+      "#bda6ea"
+    ],
+    "CHANNEL_ICON": [
+      "#bda6ea"
+    ],
+    "STATUS_ONLINE": [
+      "#4ade9e"
+    ],
+    "STATUS_IDLE": [
+      "#f9c46b"
+    ],
+    "STATUS_DND": [
+      "#ff7f96"
+    ],
+    "STATUS_OFFLINE": [
+      "#a68cd8"
+    ]
+  },
+  "rawColors": {
+    "PRIMARY_100": "#f5efff",
+    "PRIMARY_130": "#ece0ff",
+    "PRIMARY_160": "#dfcaff",
+    "PRIMARY_200": "#cdb0ff",
+    "PRIMARY_230": "#b993ff",
+    "PRIMARY_260": "#a97dff",
+    "PRIMARY_300": "#9a68f7",
+    "PRIMARY_330": "#8b52ee",
+    "PRIMARY_360": "#7636d8",
+    "PRIMARY_400": "#6f37d2",
+    "PRIMARY_430": "#6a2fc8",
+    "PRIMARY_460": "#632ab8",
+    "PRIMARY_500": "#5a23a8",
+    "PRIMARY_560": "#54209c",
+    "PRIMARY_600": "#4d1a92",
+    "PRIMARY_630": "#451683",
+    "PRIMARY_645": "#3d1274",
+    "PRIMARY_660": "#350f66",
+    "PRIMARY_700": "#2c0b56",
+    "PRIMARY_730": "#cbadff",
+    "PRIMARY_760": "#b896f5",
+    "PRIMARY_800": "#8f6fd0",
+    "PRIMARY_860": "#6a4ba8",
+    "PRIMARY_900": "#40206e",
+    "BRAND_360": "#7636d8",
+    "BRAND_400": "#6f37d2",
+    "BRAND_500": "#5a23a8",
+    "BRAND_560": "#9360f0",
+    "RED_400": "#ff7f96",
+    "RED_500": "#e04f6e",
+    "RED_560": "#c73e60",
+    "GREEN_360": "#4ade9e",
+    "GREEN_560": "#247a52",
+    "YELLOW_360": "#f9c46b",
+    "BLUE_345": "#8fc9ff",
+    "WHITE": "#ffffff",
+    "BLACK": "#000000"
+  }
+}

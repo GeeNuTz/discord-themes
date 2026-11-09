@@ -1,0 +1,9 @@
+[
+  {
+    "file": "ComfyDeep.theme.css",
+    "name": "Comfy Deep",
+    "palette": "comfy-deep",
+    "description": "Comfy Deep for Discord: near-black navy, teal text, low-glare surfaces. ClearVision v7 layout, measured contrast.",
+    "planes": ["--background-tertiary", "--background-primary", "--background-secondary"]
+  }
+]

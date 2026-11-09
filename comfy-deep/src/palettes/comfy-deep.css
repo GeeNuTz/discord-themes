@@ -1,0 +1,126 @@
+/* ============================================================================
+ * 1. COMFY DEEP TOKENS
+ *
+ *    Values sampled from the Comfy Spicetify theme's `Deep` colorscheme
+ *    (Comfy/color.ini, [Deep], github.com/Comfy-Themes/Spicetify): main #040614,
+ *    sidebar #0F111A, card #0F1118, highlight #0F1F28, text #4F9A87,
+ *    subtext #406560, button #106165, selected-row #4F9A87, error #D25050.
+ *
+ *    Two deliberate departures, both for legibility on a chat app:
+ *    - the text ramp is lifted above Comfy's #4F9A87 for body copy (that value
+ *      stays as the muted step, at 5.6:1 on the sidebar),
+ *    - surfaces carry alpha so the canvas gradient breathes instead of flattening.
+ *
+ *    Contrast for this exact file is generated into docs/CONTRAST.md: every text
+ *    pair is measured against the brightest pixel its background can produce.
+ * ========================================================================== */
+:root {
+    /* Surfaces, darkest first: rail -> canvas -> sidebar -> raised -> overlay. */
+    --comfy-void: rgba(2, 3, 10, 0.94);
+    --comfy-base: rgba(4, 6, 20, 0.88);
+    --comfy-sidebar: rgba(15, 17, 26, 0.92);
+    --comfy-sidebar-alt: rgba(12, 16, 23, 0.9);
+    --comfy-tertiary: rgba(2, 3, 10, 0.94);
+    --comfy-raised: rgba(15, 17, 24, 0.95);
+    --comfy-overlay: rgba(10, 17, 29, 0.97);
+    --comfy-modal: rgba(10, 21, 39, 0.97);
+    --comfy-input: rgba(12, 21, 32, 0.96);
+
+    /* Accent family. Comfy's button/selected colours, split by what carries text. */
+    --comfy-accent: #4f9a87; /* decoration: pills, rings, indicators */
+    --comfy-accent-fill: #106165; /* fills that carry white text */
+    --comfy-accent-hover: #0b4e51; /* darker on hover */
+    --comfy-accent-soft: #63b39e; /* accent as text: links */
+    --comfy-accent-dim: rgba(79, 154, 135, 0.22); /* hairlines */
+    --comfy-glow: rgba(79, 154, 135, 0.4);
+
+    /* Text ramp: strong -> dim, every step still legible. */
+    --comfy-text-strong: #c9f0e4;
+    --comfy-text: #a8e3d3;
+    --comfy-text-soft: #86c9b8;
+    --comfy-text-muted: #4f9a87;
+    --comfy-text-dim: #4a8f80;
+
+    /* Semantics: Comfy's error red plus tints that keep it distinguishable. */
+    --comfy-danger: #e05f5f;
+    --comfy-danger-fill: #8e2f2f;
+    --comfy-success: #58b79b;
+    --comfy-success-fill: #1f6b57;
+    --comfy-warning: #d8b26a;
+    --comfy-warning-fill: #7a5a1f;
+    --comfy-info: #7fb6d8;
+
+    /* Shades ClearVision paints panels with. */
+    --comfy-shading: rgba(4, 6, 20, 0.55);
+    --comfy-shading-card: rgba(15, 17, 24, 0.6);
+    --comfy-shading-input: rgba(12, 21, 32, 0.8);
+
+    /* Labels that sit on a filled accent surface. */
+    --comfy-on-accent: #ffffff;
+    --comfy-ink: #04121a; /* dark label on the bright accent */
+    --comfy-mention-text: #d9f5ec; /* label on a mention pill */
+}
+
+/* ============================================================================
+ * 2. CLEARVISION SETTINGS
+ *
+ *    The knobs ClearVision reads. The comments are the theme's user contract:
+ *    change a value here, not further down.
+ * ========================================================================== */
+:root {
+    /* ACCENT COLORS */
+    --main-color: #4f9a87; /* decoration: pills, rings, dividers */
+    --hover-color: #63b39e; /* hover for text/icons */
+    --success-color: #58b79b; /* positive text */
+    --danger-color: #e05f5f; /* destructive text */
+
+    /* STATUS COLORS */
+    --online-color: #58b79b;
+    --idle-color: #d8b26a;
+    --dnd-color: #e05f5f;
+    --streaming-color: #63b39e;
+    --offline-color: #4a8f80;
+
+    /* APP BACKGROUND
+       Comfy Deep is a flat #040614; this keeps that calm base and adds one faint
+       teal glow so large empty areas are not literally one pixel value. The
+       brightest pixel stays computable, so text contrast is provable.
+       Want it flat? Replace the whole --background-image value with `none`. */
+    --background-shading-percent: 100%;
+    --background-image:
+        radial-gradient(circle 1200px at 50% -10%, rgba(79, 154, 135, 0.1), rgba(79, 154, 135, 0) 62%),
+        radial-gradient(circle 900px at 8% 4%, rgba(16, 97, 101, 0.12), rgba(16, 97, 101, 0) 68%),
+        linear-gradient(170deg, #061021 0%, #040614 52%, #02030a 100%);
+    --background-position: center;
+    --background-size: cover;
+    --background-attachment: fixed;
+    --background-filter: saturate(calc(var(--saturation-factor, 1) * 1));
+
+    /* USER POPOUT / MODAL BACKGROUND */
+    --user-popout-image: var(--background-image);
+    --user-popout-position: var(--background-position);
+    --user-popout-size: var(--background-size);
+    --user-popout-attachment: var(--background-attachment);
+    --user-popout-filter: var(--background-filter);
+    --user-modal-image: var(--background-image);
+    --user-modal-position: var(--background-position);
+    --user-modal-size: var(--background-size);
+    --user-modal-attachment: var(--background-attachment);
+    --user-modal-filter: var(--background-filter);
+
+    /* FONTS: Discord's own stack. No webfont, so nothing extra leaves the client. */
+    --main-font: "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --code-font: Consolas, "gg mono", "Liberation Mono", Menlo, Courier, monospace;
+
+    /* CHANNEL COLORS */
+    --channel-normal: #a8e3d3; /* channel names */
+    --channel-muted: #4f9a87; /* muted channels */
+    --channel-hover: #c9f0e4;
+    --channel-selected: #04121a; /* dark label on the bright pill */
+    --channel-selected-bg: #4f9a87; /* Comfy's selected-row colour */
+    --channel-unread: #c9f0e4;
+    --channel-unread-hover: #ffffff;
+
+    /* ACCESSIBILITY */
+    --focus-color: var(--comfy-accent-soft);
+}

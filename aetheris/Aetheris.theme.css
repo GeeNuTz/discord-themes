@@ -1,8 +1,8 @@
 /**
- * @name Aetheris BG
+ * @name Aetheris
  * @author AsterionVT (palette) - structure revised by GeeNuTz
- * @version 5.1.2
- * @description Aetheris over a purple-tinted wallpaper. Same palette, panels opaque enough that any wallpaper stays readable.
+ * @version 5.2.0
+ * @description Vivid Aetheris: full-strength purple gradient, layered surfaces, readable text. The default build.
  * @source https://github.com/ClearVision/ClearVision-v7
  * @website https://clearvision.github.io
  */
@@ -44,15 +44,15 @@
  * ========================================================================== */
 :root {
     /* Surfaces, ascending: rail -> base -> sidebar -> raised -> overlay. */
-    --aether-void: rgba(6, 0, 30, 0.92);
-    --aether-base: rgba(18, 5, 72, 0.78);
-    --aether-sidebar: rgba(14, 4, 60, 0.84);
-    --aether-sidebar-alt: rgba(11, 3, 50, 0.82);
-    --aether-tertiary: rgba(5, 0, 26, 0.9);
-    --aether-raised: rgba(28, 8, 100, 0.88);
+    --aether-void: rgba(6, 0, 30, 0.88);
+    --aether-base: rgba(18, 5, 72, 0.62);
+    --aether-sidebar: rgba(14, 4, 60, 0.72);
+    --aether-sidebar-alt: rgba(11, 3, 50, 0.68);
+    --aether-tertiary: rgba(5, 0, 26, 0.84);
+    --aether-raised: rgba(28, 8, 100, 0.8);
     --aether-overlay: rgba(36, 10, 122, 0.95);
     --aether-modal: rgba(28, 8, 96, 0.96);
-    --aether-input: rgba(24, 7, 88, 0.9);
+    --aether-input: rgba(24, 7, 88, 0.86);
 
     /* Accent family. The bright signature colour is decoration only. */
     --aether-accent: #9360f0; /* pills, rings, borders, indicators */
@@ -78,9 +78,9 @@
     --aether-info: #8fc9ff; /* info text */
 
     /* ClearVision shading layers: same hues as the canvas, tuned per surface. */
-    --aether-shading: rgba(18, 5, 72, 0.55);
-    --aether-shading-card: rgba(28, 8, 100, 0.6);
-    --aether-shading-input: rgba(28, 8, 100, 0.8);
+    --aether-shading: rgba(18, 5, 72, 0.5);
+    --aether-shading-card: rgba(28, 8, 100, 0.5);
+    --aether-shading-input: rgba(28, 8, 100, 0.72);
 
     /* Labels that sit on a filled accent surface. */
     --aether-on-accent: #ffffff;
@@ -108,18 +108,20 @@
     --offline-color: #a68cd8; /* was #6e6a86 - invisible on deep purple */
 
     /* APP BACKGROUND
-       A wallpaper under a purple wash, hue-rotated and darkened into the Aetheris
-       range by the filter below. The wash is what makes the wallpaper safe: even a
-       pure-white photo lands at a known pink-free violet, so text passes on any
-       image. brightness(0.55) caps the wallpaper before the wash. */
+       A bounded purple gradient instead of a bitmap: no external asset, and the
+       brightest pixel is computable, so text contrast is provable.
+       Want it flat? Replace the whole --background-image value with `none`. */
     --background-shading-percent: 100%;
     --background-image:
-        linear-gradient(182deg, rgba(14, 3, 50, 0.66), rgba(9, 2, 34, 0.82)),
-        url(https://clearvision.github.io/images/sapphire.jpg);
+        radial-gradient(circle 1200px at 50% -6%, rgba(170, 122, 255, 0.18), rgba(170, 122, 255, 0) 64%),
+        radial-gradient(circle 1000px at 12% 4%, rgba(160, 96, 255, 0.31), rgba(160, 96, 255, 0) 70%),
+        radial-gradient(circle 1200px at 90% 96%, rgba(112, 40, 255, 0.26), rgba(112, 40, 255, 0) 72%),
+        radial-gradient(circle 820px at 56% 50%, rgba(74, 0, 200, 0.26), rgba(74, 0, 200, 0) 74%),
+        linear-gradient(160deg, #150540 0%, #0e0233 46%, #06001c 100%);
     --background-position: center;
     --background-size: cover;
     --background-attachment: fixed;
-    --background-filter: saturate(1.5) hue-rotate(58deg) brightness(0.55);
+    --background-filter: saturate(calc(var(--saturation-factor, 1) * 1.05));
 
     /* USER POPOUT / MODAL BACKGROUND */
     --user-popout-image: var(--background-image);

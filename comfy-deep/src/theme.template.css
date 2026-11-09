@@ -1,0 +1,397 @@
+/**
+ * @name {{NAME}}
+ * @author Comfy Themes (palette) - Discord port by GeeNuTz
+ * @version {{VERSION}}
+ * @description {{DESCRIPTION}}
+ * @source https://github.com/ClearVision/ClearVision-v7
+ * @website https://clearvision.github.io
+ */
+
+/* ==================== CLEARVISION BASE IMPORTS ==================== */
+@import url("https://clearvision.github.io/ClearVision-v7/main.css");
+@import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
+
+
+{{PALETTE}}
+/* ============================================================================
+ * 3. LAYERED SURFACES
+ *
+ *    ClearVision paints components with translucent shading over the app
+ *    background, so Discord's base variables must be translucent too: opaque
+ *    values erase the gradient and flatten the window (the old theme's bug).
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --background-primary: var(--comfy-base);
+    --background-primary-alt: var(--comfy-base);
+    --background-secondary: var(--comfy-sidebar);
+    --background-secondary-alt: var(--comfy-sidebar-alt);
+    --background-tertiary: var(--comfy-tertiary);
+    --background-accent: var(--comfy-accent-fill);
+    --background-floating: var(--comfy-overlay);
+    --background-nested-floating: var(--comfy-modal);
+    --background-mobile-primary: var(--comfy-base);
+    --background-mobile-secondary: var(--comfy-sidebar);
+    --home-background: transparent;
+
+    /* Discord's newer surface names (settings, sheets, cards). */
+    --bg-base-primary: var(--comfy-base);
+    --bg-base-secondary: var(--comfy-sidebar);
+    --bg-base-tertiary: var(--comfy-tertiary);
+    --bg-base-lowest: rgba(3, 0, 12, 0.92);
+    --bg-base-lower: rgba(5, 1, 24, 0.88);
+    --bg-base-low: var(--comfy-sidebar-alt);
+    --bg-surface-raised: var(--comfy-raised);
+    --bg-surface-overlay: var(--comfy-overlay);
+    --bg-surface-highest: rgba(23, 10, 77, 0.96);
+    --bg-space: transparent;
+    --bg-backdrop: rgba(2, 0, 12, 0.78);
+
+    /* Cards, embeds, code, uploads: the raised step, not the canvas. */
+    --card-primary-bg: rgba(11, 4, 48, 0.72);
+    --card-secondary-bg: var(--comfy-raised);
+    --embed-background: var(--comfy-raised);
+    --embed-background-alternate: rgba(11, 4, 48, 0.8);
+    --activity-card-background: rgba(11, 4, 48, 0.8);
+    --background-code: rgba(5, 0, 24, 0.7);
+    --background-code-addition: rgba(36, 122, 82, 0.22);
+    --background-code-deletion: rgba(199, 62, 96, 0.22);
+    --channeltextarea-background: var(--comfy-input);
+    --chat-input-background: var(--comfy-input);
+
+    /* ClearVision shading layers: same hues as the canvas, tuned per surface so
+       the gradient glows through instead of being covered by flat fills. */
+    --background-shading: var(--comfy-shading);
+    --card-shading: var(--comfy-shading-card);
+    --popout-shading: var(--comfy-overlay);
+    --modal-shading: var(--comfy-modal);
+    --input-shading: var(--comfy-shading-input);
+}
+
+/* ============================================================================
+ * 4. TEXT
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    /* ClearVision's source variables: Discord's --text-* derive from them. */
+    --normal-text: var(--comfy-text);
+    --muted-text: var(--comfy-text-muted);
+
+    /* Explicit ramp, so nothing falls back to Discord's gray. */
+    --text-strong: var(--comfy-text-strong);
+    --text-default: var(--comfy-text);
+    --text-primary: var(--comfy-text);
+    --text-normal: var(--comfy-text);
+    --text-secondary: var(--comfy-text-soft);
+    --text-tertiary: var(--comfy-text-muted);
+    --text-subtle: var(--comfy-text-muted);
+    --text-muted: var(--comfy-text-muted);
+    --text-link: var(--comfy-accent-soft);
+    --text-brand: var(--comfy-accent-soft);
+    --text-feedback-positive: var(--comfy-success);
+    --text-feedback-warning: var(--comfy-warning);
+    --text-feedback-critical: var(--comfy-danger);
+    --text-feedback-info: var(--comfy-info);
+    --text-positive: var(--comfy-success);
+    --text-warning: var(--comfy-warning);
+    --text-danger: var(--comfy-danger);
+
+    --header-primary: var(--comfy-text-strong);
+    --header-secondary: var(--comfy-text-soft);
+    --channels-default: var(--channel-normal);
+    --channel-icon: var(--channel-normal);
+
+    --interactive-normal: #a8e3d3;
+    --interactive-hover: #c9f0e4;
+    --interactive-active: #ffffff;
+    --interactive-muted: #4a8f80;
+    --interactive-text-default: #a8e3d3;
+    --interactive-text-hover: #c9f0e4;
+    --interactive-text-active: #ffffff;
+    --interactive-icon-default: #a8e3d3;
+    --interactive-icon-hover: #c9f0e4;
+    --interactive-icon-active: #ffffff;
+}
+
+/* ============================================================================
+ * 5. ACCENT RAMPS
+ *
+ *    Discord's --brand-* / --primary-* are a full 100-900 ramp used by hundreds
+ *    of components. Left at Discord's default they are blurple: that is where
+ *    stray blue controls come from. The ramp is mapped onto the Comfy Deep teal.
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --brand-100: #c9f0e4;
+    --brand-130: #b7e7da;
+    --brand-160: #a8e3d3;
+    --brand-200: #93d6c2;
+    --brand-230: #86c9b8;
+    --brand-260: #76bfae;
+    --brand-300: #66b3a1;
+    --brand-330: #5aa895;
+    --brand-345: #0e575a;
+    --brand-360: #106165; /* filled brand surface: carries white text */
+    --brand-400: #0b4e51;
+    --brand-430: #094447;
+    --brand-460: #2d5f52;
+    --brand-500: #244d42;
+    --brand-560: #1d3f37;
+    --brand-600: #16312b;
+    --brand-630: #102420;
+    --brand-645: #0c1b18;
+    --brand-660: #0a1614;
+    --brand-700: #081211;
+    --brand-730: #c9f0e4;
+    --brand-760: #a8e3d3;
+    --brand-800: #86c9b8;
+    --brand-860: #5aa895;
+    --brand-900: #2d5f52;
+
+    --brand-experiment: var(--comfy-accent-fill);
+    --brand-experiment-100: #c9f0e4;
+    --brand-experiment-130: #b7e7da;
+    --brand-experiment-160: #a8e3d3;
+    --brand-experiment-200: #93d6c2;
+    --brand-experiment-230: #86c9b8;
+    --brand-experiment-260: #76bfae;
+    --brand-experiment-300: #66b3a1;
+    --brand-experiment-330: #5aa895;
+    --brand-experiment-360: #106165;
+    --brand-experiment-400: #0b4e51;
+    --brand-experiment-430: #094447;
+    --brand-experiment-460: #2d5f52;
+    --brand-experiment-500: #244d42;
+    --brand-experiment-560: #1d3f37;
+    --brand-experiment-600: #16312b;
+    --brand-experiment-630: #102420;
+    --brand-experiment-645: #0c1b18;
+    --brand-experiment-660: #0a1614;
+    --brand-experiment-700: #081211;
+    --brand-experiment-730: #c9f0e4;
+    --brand-experiment-800: #86c9b8;
+    --brand-experiment-860: #5aa895;
+    --brand-experiment-900: #2d5f52;
+
+    /* Alpha variants: Discord ships these as literal blurple rgba values, so
+       roles, selected reactions and keyboard-focus rings stay blue unless set. */
+    --brand-experiment-05a: rgba(79, 154, 135, 0.05);
+    --brand-experiment-10a: rgba(79, 154, 135, 0.1);
+    --brand-experiment-15a: rgba(79, 154, 135, 0.15);
+    --brand-experiment-20a: rgba(79, 154, 135, 0.2);
+    --brand-experiment-24a: rgba(79, 154, 135, 0.24);
+    --brand-experiment-30a: rgba(79, 154, 135, 0.3);
+    --brand-experiment-40a: rgba(79, 154, 135, 0.4);
+    --brand-experiment-50a: rgba(79, 154, 135, 0.5);
+    --brand-experiment-60a: rgba(79, 154, 135, 0.6);
+
+    --primary-100: #c9f0e4;
+    --primary-130: #a8e3d3;
+    --primary-160: #93d6c2;
+    --primary-200: #86c9b8;
+    --primary-230: #76bfae;
+    --primary-260: #66b3a1;
+    --primary-300: #5aa895;
+    --primary-330: #4f9a87;
+    --primary-360: #3f8574;
+    --primary-400: #367262;
+    --primary-430: #2d5f52;
+    --primary-460: #244d42;
+    --primary-500: #1d3f37;
+    --primary-530: #16312b;
+    --primary-560: #102420;
+    --primary-600: #0c1b18;
+    --primary-630: #0a1614;
+    --primary-645: #081211;
+    --primary-660: #061011;
+    --primary-700: #040a0c;
+    --primary-730: #030709;
+    --primary-760: #020507;
+    --primary-800: #020406;
+    --primary-830: #010304;
+    --primary-860: #010203;
+    --primary-900: #010203;
+}
+
+/* ============================================================================
+ * 6. STATUS & SEMANTIC
+ *
+ *    Discord reuses one variable for "coloured text" and "filled button with a
+ *    white label". No single colour serves both, so text-safe values live here
+ *    and the filled-button corrections are in section 8.1.
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --status-online: var(--comfy-success);
+    --status-idle: var(--comfy-warning);
+    --status-dnd: var(--comfy-danger);
+    --status-offline: var(--comfy-text-dim);
+    --status-streaming: var(--comfy-accent-soft);
+    --status-danger: var(--comfy-danger-fill);
+    --status-danger-background: #2a0f0f;
+    --status-positive: var(--comfy-success-fill);
+    --status-positive-background: #0a2018;
+    --status-warning: var(--comfy-warning);
+    --status-warning-background: #241a08;
+
+    --red-400: var(--comfy-danger);
+    --red-430: #e87272;
+    --red-500: #d26060;
+    --red-560: var(--comfy-danger-fill);
+    --green-360: var(--comfy-success);
+    --green-400: #58b79b;
+    --green-500: #4aa88f;
+    --green-560: var(--comfy-success-fill);
+    --yellow-300: #e3c184;
+    --yellow-360: var(--comfy-warning);
+
+    --info-positive-foreground: var(--comfy-success);
+    --info-warning-foreground: var(--comfy-warning);
+    --info-danger-foreground: var(--comfy-danger);
+    --info-help-foreground: var(--comfy-info);
+    --info-positive-background: rgba(36, 122, 82, 0.18);
+    --info-warning-background: rgba(249, 196, 107, 0.14);
+    --info-danger-background: rgba(199, 62, 96, 0.18);
+}
+
+/* ============================================================================
+ * 7. BORDERS & MODIFIERS
+ *
+ *    Purple-tinted hairlines instead of Discord's neutral white alphas: they are
+ *    what separates one deep-purple plane from the next.
+ * ========================================================================== */
+:root:is(.theme-dark, .theme-darker, .theme-midnight) {
+    --border-faint: var(--comfy-accent-dim);
+    --border-subtle: rgba(79, 154, 135, 0.24);
+    --border-normal: rgba(79, 154, 135, 0.3);
+    --border-strong: rgba(79, 154, 135, 0.42);
+    --border-muted: rgba(79, 154, 135, 0.14);
+
+    --background-modifier-hover: rgba(79, 154, 135, 0.1);
+    --background-modifier-active: rgba(79, 154, 135, 0.16);
+    --background-modifier-selected: rgba(79, 154, 135, 0.22);
+    --background-modifier-accent: rgba(79, 154, 135, 0.12);
+    --background-modifier-border: rgba(79, 154, 135, 0.18);
+    --background-message-hover: rgba(79, 154, 135, 0.06);
+
+    --scrollbar-auto-thumb: #2f6e63;
+    --scrollbar-auto-thumb-hover: #4f9a87;
+    --scrollbar-auto-track: transparent;
+    --scrollbar-thin-thumb: #2f6e63;
+    --scrollbar-thin-track: transparent;
+
+    --focus-primary: var(--comfy-accent-soft);
+    --input-background: rgba(11, 4, 48, 0.78);
+    --modal-background: var(--comfy-modal);
+    --modal-footer-background: rgba(9, 2, 34, 0.96);
+}
+
+/* ============================================================================
+ * 8. COMPONENT FIXES
+ *
+ *    Only the cases a variable cannot reach. Selectors match both the `name_hash`
+ *    and `name-hash` class conventions, so a Discord class rename degrades to
+ *    "this rule stops matching" instead of painting the wrong thing.
+ * ========================================================================== */
+
+/* --- 8.1 Filled buttons -------------------------------------------------
+ * ClearVision paints brand/green/red buttons with the *text* accents, leaving
+ * white labels at 1.9-4.1:1. Filled surfaces get the darker shades; outlines,
+ * links and icons keep the bright ones. */
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorBrand_"],
+        [class*="colorBrand-"],
+        [class*="colorPrimary_"],
+        [class*="colorPrimary-"]
+    ) {
+    background-color: var(--comfy-accent-fill);
+    color: var(--comfy-on-accent);
+}
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorBrand_"],
+        [class*="colorBrand-"],
+        [class*="colorPrimary_"],
+        [class*="colorPrimary-"]
+    ):hover {
+    background-color: var(--comfy-accent-hover);
+}
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorRed_"],
+        [class*="colorRed-"],
+        [class*="colorDanger_"],
+        [class*="colorDanger-"]
+    ) {
+    background-color: var(--comfy-danger-fill);
+    color: var(--comfy-on-accent);
+}
+:is([class*="lookFilled_"], [class*="lookFilled-"]):is(
+        [class*="colorGreen_"],
+        [class*="colorGreen-"],
+        [class*="colorSuccess_"],
+        [class*="colorSuccess-"]
+    ) {
+    background-color: var(--comfy-success-fill);
+    color: var(--comfy-on-accent);
+}
+
+/* --- 8.2 Mentions -------------------------------------------------------
+ * The old file washed mentioned rows in maroon (rgba(114, 0, 0, .15)) and left
+ * the inline pill as light text on #4f9a87 (3.1:1). Both are purple now. */
+:is([class*="mentioned_"], [class*="mentioned-"]) {
+    --background-mentioned: hsl(from var(--main-color) h s l / 0.16);
+    --background-mentioned-hover: hsl(from var(--hover-color) h s l / 0.22);
+    /* Inset rail instead of border-left: a border would shift the row 2px. */
+    box-shadow: inset 2px 0 0 var(--main-color);
+}
+
+:is([class^="mention_"], [class*=" mention_"], [class^="mention-"], [class*=" mention-"]) {
+    background-color: var(--comfy-accent-fill);
+    color: var(--comfy-mention-text);
+}
+:is([class^="mention_"], [class*=" mention_"], [class^="mention-"], [class*=" mention-"]):hover {
+    background-color: var(--comfy-accent-hover);
+}
+/* ClearVision's role/channel mention wrapper. The hash is pinned to the build
+   ClearVision 7.0.1 targets; if Discord renames it, this rule stops matching
+   and the pill falls back to --comfy-accent-fill with --text-default text. */
+[class*="NDaLCQ"] {
+    background-color: var(--comfy-accent-fill);
+    color: var(--comfy-mention-text);
+}
+
+/* --- 8.3 Structure: depth where variables cannot reach -------------------
+ * Hairlines make the rails read as separate planes; without them every panel
+ * is the same #040614 and the layout looks flat. */
+:is([class*="guilds_"], [class*="guilds-"]) {
+    background-color: var(--comfy-void);
+    border-right: 1px solid var(--comfy-accent-dim);
+}
+
+:is([class*="sidebar_"], [class*="sidebar-"]) {
+    border-right: 1px solid var(--comfy-accent-dim);
+}
+
+:is([class*="members_"], [class*="members-"]) {
+    border-left: 1px solid var(--comfy-accent-dim);
+}
+
+/* Chat canvas: faint top glow, so the message column is not a void. */
+:is([class*="chat_"], [class*="chat-"]) {
+    background-image: radial-gradient(circle 620px at 50% -10%, rgba(79, 154, 135, 0.1), transparent 70%);
+}
+
+/* --- 8.4 Channels -------------------------------------------------------
+ * The selected pill is drawn by ClearVision as a ::before behind the label, and
+ * its colours come from --channel-selected / --channel-selected-bg (section 2):
+ * dark label on the bright accent, 4.79:1, and the signature colour survives. */
+:is([class*="modeUnread_"], [class*="modeUnread-"]) :is([class*="name_"], [class*="name-"]) {
+    color: var(--channel-unread);
+    font-weight: 600;
+}
+
+/* --- 8.5 Chat input -----------------------------------------------------
+ * Sits on the raised step with an accent rim, instead of the near-black
+ * #040614 box that read as a hole punched through the window. */
+:is([class*="channelTextArea_"], [class*="channelTextArea-"]) {
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px var(--border-subtle), 0 4px 18px rgba(2, 0, 12, 0.45);
+}
+:is([class*="channelTextArea_"], [class*="channelTextArea-"]):focus-within {
+    box-shadow: 0 0 0 1px var(--main-color), 0 0 18px var(--comfy-glow);
+}

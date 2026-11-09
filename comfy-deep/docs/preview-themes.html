@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Comfy Deep — theme list preview</title>
+<style>
+  :root { --m-rail: rgba(2, 3, 10, 0.94); --m-sidebar: rgba(15, 17, 26, 0.92); --m-chat: rgba(4, 6, 20, 0.88); --m-raised: rgba(15, 17, 24, 0.95); --m-input: rgba(12, 21, 32, 0.96); --m-border: rgba(79, 154, 135, 0.24); --m-text: #a8e3d3; --m-text-strong: #c9f0e4; --m-text-muted: #4f9a87; --m-text-dim: #4a8f80; --m-channel: #a8e3d3; --m-channel-muted: #4f9a87; --m-unread: #c9f0e4; --m-accent: #4f9a87; --m-accent-fill: #106165; --m-on-accent: #ffffff; --m-selected-bg: #4f9a87; --m-selected-fg: #04121a; --m-success: #58b79b; --m-warning: #d8b26a; --m-danger: #e05f5f; --m-offline: #4a8f80; --m-mention-bg: hsl(from #4f9a87 h s l / 0.16); --m-mention-pill: #106165; --m-mention-pill-fg: #d9f5ec; --m-scrollbar: #2f6e63; --m-filter: saturate(calc(1 * 1)); --m-bg: radial-gradient(circle 1200px at 50% -10%, rgba(79, 154, 135, 0.1), rgba(79, 154, 135, 0) 62%), radial-gradient(circle 900px at 8% 4%, rgba(16, 97, 101, 0.12), rgba(16, 97, 101, 0) 68%), linear-gradient(170deg, #061021 0%, #040614 52%, #02030a 100%); }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: "Noto Sans", "DejaVu Sans", system-ui, sans-serif;
+    font-size: 15px; color: var(--m-text); background: var(--m-chat); overflow: hidden;
+  }
+  .screen { position: fixed; inset: 0; }
+  .screen::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--m-bg); filter: var(--m-filter);
+    background-position: center; background-size: cover; background-repeat: no-repeat;
+  }
+  .veil { position: absolute; inset: 0; background: var(--m-rail); opacity: .72; }
+  .panel {
+    position: absolute; left: 12%; top: 8%; right: 12%; bottom: 8%;
+    display: flex; background: var(--m-chat); border: 1px solid var(--m-border);
+    border-radius: 8px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, .55);
+  }
+  .nav { width: 26%; background: var(--m-sidebar); border-right: 1px solid var(--m-border); padding: 14px 10px; }
+  .nav .who { display: flex; align-items: center; gap: 10px; padding: 6px 8px 16px; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--m-accent), var(--m-raised)); border: 1px solid var(--m-border); }
+  .nav .who b { display: block; color: var(--m-text-strong); font-size: 15px; }
+  .nav .who small { color: var(--m-text-muted); font-size: 12px; }
+  .nav .group { margin: 14px 6px 6px; font-size: 11px; letter-spacing: .8px; text-transform: uppercase; color: var(--m-text-muted); }
+  .nav .item { padding: 8px 10px; border-radius: 6px; color: var(--m-text-muted); font-size: 14px; margin-bottom: 2px; }
+  .nav .item.active { background: var(--m-accent); color: var(--m-selected-fg); font-weight: 600; }
+  .main { flex: 1; padding: 26px 34px; overflow: hidden; }
+  .main h1 { margin: 0 0 18px; font-size: 22px; color: var(--m-text-strong); }
+  .tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--m-border); margin-bottom: 20px; }
+  .tab { padding: 0 2px 10px; color: var(--m-text-muted); font-size: 14px; }
+  .tab.active { color: var(--m-text-strong); border-bottom: 2px solid var(--m-accent); font-weight: 600; }
+  .hint { font-size: 12.5px; color: var(--m-text-muted); line-height: 1.5; margin-bottom: 14px; }
+  .row {
+    display: flex; align-items: flex-start; gap: 16px; padding: 14px 16px;
+    background: var(--m-raised); border: 1px solid var(--m-border); border-radius: 8px; margin-bottom: 10px;
+  }
+  .row .meta { flex: 1; }
+  .row .name { font-weight: 700; color: var(--m-text-strong); font-size: 15px; }
+  .row .by { font-size: 11.5px; color: var(--m-text-muted); margin: 2px 0 6px; }
+  .row .desc { font-size: 12.5px; color: var(--m-text-muted); line-height: 1.45; }
+  .row .desc a { color: var(--m-accent); text-decoration: none; }
+  .toggle { width: 34px; height: 20px; border-radius: 10px; background: var(--m-border); position: relative; flex: 0 0 34px; margin-top: 2px; }
+  .toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--m-text-muted); }
+  .toggle.on { background: var(--m-accent); }
+  .toggle.on::after { left: 16px; background: var(--m-selected-fg); }
+  .note { margin-top: 18px; font-size: 11.5px; color: var(--m-text-dim); line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="veil"></div>
+  <div class="panel">
+    <div class="nav">
+      <div class="who"><div class="avatar"></div><div><b>Nova</b><small>Edit Profile</small></div></div>
+      <div class="group">User Settings</div>
+      <div class="item">Account</div>
+      <div class="item">Appearance</div>
+      <div class="item">Accessibility</div>
+      <div class="group">Vencord Settings</div>
+      <div class="item">Vencord</div>
+      <div class="item">Plugins</div>
+      <div class="item active">Themes</div>
+      <div class="item">Updater</div>
+      <div class="item">Backup &amp; Restore</div>
+    </div>
+    <div class="main">
+      <h1>Themes</h1>
+      <div class="tabs"><div class="tab active">Local Themes</div><div class="tab">Online Themes</div></div>
+      <div class="hint">Themes are standalone CSS files. Drop one in the themes folder and toggle it here - the list entry is the <b>@name</b> field inside the file, not the filename.</div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Comfy Deep</div>
+          <div class="by">by Comfy Themes (palette) - Discord port by GeeNuTz</div>
+          <div class="desc">Comfy Deep for Discord: near-black navy, teal text, low-glare surfaces. ClearVision v7 layout, measured contrast. <a href="#">Website</a></div>
+        </div>
+        <div class="toggle on"></div>
+      </div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Comfy Deep (mobile)</div>
+          <div class="by">by GeeNuTz - Revenge theme</div>
+          <div class="desc">The same palette as a Revenge manifest: ComfyDeep-Revenge.json. Installed from the Revenge themes page, so it is not listed in this folder.</div>
+        </div>
+        <div class="toggle"></div>
+      </div>
+      <div class="note">One palette, two clients: the stylesheet here and the JSON manifest for Revenge.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

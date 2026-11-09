@@ -1,0 +1,126 @@
+{
+  "spec": 2,
+  "name": "Comfy Deep",
+  "description": "Comfy Deep for Discord: near-black navy, teal text, low-glare surfaces. ClearVision v7 layout, measured contrast.",
+  "authors": [
+    {
+      "name": "GeeNuTz"
+    }
+  ],
+  "semanticColors": {
+    "BACKGROUND_PRIMARY": [
+      "#050917"
+    ],
+    "BACKGROUND_SECONDARY": [
+      "#0f121b"
+    ],
+    "BACKGROUND_SECONDARY_ALT": [
+      "#0c1119"
+    ],
+    "BACKGROUND_TERTIARY": [
+      "#02050c"
+    ],
+    "BACKGROUND_ACCENT": [
+      "#106165"
+    ],
+    "BACKGROUND_FLOATING": [
+      "#0a111d"
+    ],
+    "BACKGROUND_NESTED_FLOATING": [
+      "#0a1527"
+    ],
+    "BACKGROUND_MOBILE_PRIMARY": [
+      "#050917"
+    ],
+    "BACKGROUND_MOBILE_SECONDARY": [
+      "#0f121b"
+    ],
+    "TEXT_NORMAL": [
+      "#a8e3d3"
+    ],
+    "TEXT_MUTED": [
+      "#4f9a87"
+    ],
+    "TEXT_LINK": [
+      "#63b39e"
+    ],
+    "TEXT_BRAND": [
+      "#63b39e"
+    ],
+    "TEXT_DANGER": [
+      "#e05f5f"
+    ],
+    "HEADER_PRIMARY": [
+      "#c9f0e4"
+    ],
+    "HEADER_SECONDARY": [
+      "#86c9b8"
+    ],
+    "INTERACTIVE_NORMAL": [
+      "#a8e3d3"
+    ],
+    "INTERACTIVE_HOVER": [
+      "#c9f0e4"
+    ],
+    "INTERACTIVE_ACTIVE": [
+      "#ffffff"
+    ],
+    "INTERACTIVE_MUTED": [
+      "#4f9a87"
+    ],
+    "CHANNEL_ICON": [
+      "#4f9a87"
+    ],
+    "STATUS_ONLINE": [
+      "#58b79b"
+    ],
+    "STATUS_IDLE": [
+      "#d8b26a"
+    ],
+    "STATUS_DND": [
+      "#e05f5f"
+    ],
+    "STATUS_OFFLINE": [
+      "#4a8f80"
+    ]
+  },
+  "rawColors": {
+    "PRIMARY_100": "#c9f0e4",
+    "PRIMARY_130": "#b7e7da",
+    "PRIMARY_160": "#a8e3d3",
+    "PRIMARY_200": "#93d6c2",
+    "PRIMARY_230": "#86c9b8",
+    "PRIMARY_260": "#76bfae",
+    "PRIMARY_300": "#66b3a1",
+    "PRIMARY_330": "#5aa895",
+    "PRIMARY_360": "#106165",
+    "PRIMARY_400": "#0b4e51",
+    "PRIMARY_430": "#094447",
+    "PRIMARY_460": "#2d5f52",
+    "PRIMARY_500": "#244d42",
+    "PRIMARY_560": "#1d3f37",
+    "PRIMARY_600": "#16312b",
+    "PRIMARY_630": "#102420",
+    "PRIMARY_645": "#0c1b18",
+    "PRIMARY_660": "#0a1614",
+    "PRIMARY_700": "#081211",
+    "PRIMARY_730": "#c9f0e4",
+    "PRIMARY_760": "#a8e3d3",
+    "PRIMARY_800": "#86c9b8",
+    "PRIMARY_860": "#5aa895",
+    "PRIMARY_900": "#2d5f52",
+    "BRAND_360": "#106165",
+    "BRAND_400": "#0b4e51",
+    "BRAND_500": "#244d42",
+    "BRAND_560": "#4f9a87",
+    "RED_400": "#e05f5f",
+    "RED_500": "#d26060",
+    "RED_560": "#8e2f2f",
+    "GREEN_360": "#58b79b",
+    "GREEN_560": "#1f6b57",
+    "YELLOW_360": "#d8b26a",
+    "BLUE_345": "#7fb6d8",
+    "WHITE": "#ffffff",
+    "BLACK": "#000000"
+  }
+}

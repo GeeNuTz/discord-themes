@@ -1,0 +1,20 @@
+{
+  "name": "aetheris",
+  "version": "5.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Aetheris \u2014 deep-purple ClearVision v7 theme for Vencord / Vesktop",
+  "scripts": {
+    "test": "node --test test/theme.test.js",
+    "report": "node tools/report.mjs",
+    "preview": "node tools/preview.mjs",
+    "build": "node tools/build.mjs && node tools/build-revenge.mjs",
+    "verify": "node tools/verify.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GeeNuTz/discord-themes",
+    "directory": "aetheris"
+  },
+  "homepage": "https://github.com/GeeNuTz/discord-themes/tree/main/aetheris#readme"
+}

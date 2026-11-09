@@ -1,0 +1,20 @@
+{
+  "name": "comfy-deep",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Comfy Deep for Discord - ClearVision theme (Vesktop/Vencord) and Revenge theme, one palette",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GeeNuTz/discord-themes",
+    "directory": "comfy-deep"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs && node tools/build-revenge.mjs",
+    "test": "node --test test/theme.test.js",
+    "report": "node tools/report.mjs",
+    "preview": "node tools/preview.mjs",
+    "verify": "node tools/verify.mjs"
+  },
+  "homepage": "https://github.com/GeeNuTz/discord-themes/tree/main/comfy-deep#readme"
+}
