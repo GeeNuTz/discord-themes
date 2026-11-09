@@ -25,10 +25,11 @@ the theme list shows them side by side instead of as duplicates.
 | [aetheris.jpg](docs/screenshots/aetheris.jpg) | Aetheris |
 | [aetheris-bg.jpg](docs/screenshots/aetheris-bg.jpg) | Aetheris BG |
 | [aetheris-deep.jpg](docs/screenshots/aetheris-deep.jpg) | Aetheris Deep |
-| [themes-menu.jpg](docs/screenshots/themes-menu.jpg) | Vencord → Settings → Themes, all three listed |
+| [themes-menu.jpg](docs/screenshots/themes-menu.jpg) | the three `@name` entries as Vencord lists them |
 
-The screenshot came from a live client, not a mock; the mock layouts in `docs/preview*.html` are
-only there to regenerate the palette without launching Discord.
+The images are rendered headless from the shipped palettes (`docs/preview*.html`), with neutral
+server, channel and member names. The layout is a mock of Discord's window, so the pictures show
+colour and density, not Discord's real DOM — the selector fixes are verified statically instead.
 
 > The `@name` inside the file is what Vencord lists — **not the filename**. Files that differ only
 > by filename but carry the same `@name` cannot be told apart in the list. That is what happened to
@@ -166,9 +167,9 @@ All are plain static GETs; none carries a token, query string or identifier beyo
 request reveals. To drop the fonts, delete the three `@font-face` blocks — the stacks fall back to
 `gg sans` and Consolas.
 
-The screenshots are real client captures from a private server and contain other users' display
-names and public message text. If that matters, replace `docs/screenshots/*.jpg` with a neutral
-capture — the README only needs one image per build.
+The screenshots contain no third-party data: names, channels and messages are invented, and the
+pages that produce them are in `docs/preview*.html`. Earlier revisions of this repository used live
+captures with other users' display names; they are replaced, and remain only in git history.
 
 ## Development
 

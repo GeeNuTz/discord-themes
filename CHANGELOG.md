@@ -4,6 +4,23 @@ Aetheris is a ClearVision v7 theme for Vencord / Vesktop. Versions follow the
 palette, not ClearVision's own numbering; each entry states the ClearVision
 build it was written against.
 
+## 5.1.2 — 2026-11-09
+
+Privacy fix in the docs; the stylesheets are unchanged apart from the version in
+their headers.
+
+### Changed
+- Screenshots are now generated from the shipped palettes instead of being live
+  client captures: neutral server, channel and member names, neutral messages,
+  no third-party display names or private chat text.
+- `docs/preview-themes.html` (new): a neutral render of Settings → Themes showing
+  the three builds and their `@name` values.
+- `tools/preview.mjs` generates five pages; `tools/make-shots.py` composes them.
+
+### Note
+The previous captures remain in this repository's git history. Rewriting history
+was not done here because it is destructive; ask if you want it purged.
+
 ## 5.1.1 — 2026-11-09
 
 Documentation and delivery release. The stylesheets are unchanged apart from the

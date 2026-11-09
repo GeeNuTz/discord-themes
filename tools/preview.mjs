@@ -115,6 +115,115 @@ function legacyVars() {
   };
 }
 
+
+const THEMES_MOCK = String.raw`<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>__TITLE__</title>
+<style>
+  :root { __VARS__ --m-bg: __BACKGROUND__; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: "Roboto", "Noto Sans", "DejaVu Sans", system-ui, sans-serif;
+    font-size: 15px; color: var(--m-text); background: var(--m-chat); overflow: hidden;
+  }
+  .screen { position: fixed; inset: 0; }
+  .screen::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--m-bg); filter: var(--m-filter);
+    background-position: center; background-size: cover; background-repeat: no-repeat;
+  }
+  .veil { position: absolute; inset: 0; background: var(--m-rail); opacity: .72; }
+  .panel {
+    position: absolute; left: 12%; top: 8%; right: 12%; bottom: 8%;
+    display: flex; background: var(--m-chat); border: 1px solid var(--m-border);
+    border-radius: 8px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, .55);
+  }
+  .nav { width: 26%; background: var(--m-sidebar); border-right: 1px solid var(--m-border); padding: 14px 10px; }
+  .nav .who { display: flex; align-items: center; gap: 10px; padding: 6px 8px 16px; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--m-accent), var(--m-raised)); border: 1px solid var(--m-border); }
+  .nav .who b { display: block; color: var(--m-text-strong); font-size: 15px; }
+  .nav .who small { color: var(--m-text-muted); font-size: 12px; }
+  .nav .group { margin: 14px 6px 6px; font-size: 11px; letter-spacing: .8px; text-transform: uppercase; color: var(--m-text-muted); }
+  .nav .item { padding: 8px 10px; border-radius: 6px; color: var(--m-text-muted); font-size: 14px; margin-bottom: 2px; }
+  .nav .item.active { background: var(--m-accent); color: var(--m-selected-fg); font-weight: 600; }
+  .main { flex: 1; padding: 26px 34px; overflow: hidden; }
+  .main h1 { margin: 0 0 18px; font-size: 22px; color: var(--m-text-strong); }
+  .tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--m-border); margin-bottom: 20px; }
+  .tab { padding: 0 2px 10px; color: var(--m-text-muted); font-size: 14px; }
+  .tab.active { color: var(--m-text-strong); border-bottom: 2px solid var(--m-accent); font-weight: 600; }
+  .section { font-size: 13px; font-weight: 700; color: var(--m-text-strong); margin: 18px 0 8px; }
+  .hint { font-size: 12.5px; color: var(--m-text-muted); line-height: 1.5; margin-bottom: 12px; }
+  .row {
+    display: flex; align-items: flex-start; gap: 16px; padding: 14px 16px;
+    background: var(--m-raised); border: 1px solid var(--m-border); border-radius: 8px; margin-bottom: 10px;
+  }
+  .row .meta { flex: 1; }
+  .row .name { font-weight: 700; color: var(--m-text-strong); font-size: 15px; }
+  .row .by { font-size: 11.5px; color: var(--m-text-muted); margin: 2px 0 6px; }
+  .row .desc { font-size: 12.5px; color: var(--m-text-muted); line-height: 1.45; }
+  .row .desc a { color: var(--m-accent); text-decoration: none; }
+  .toggle { width: 34px; height: 20px; border-radius: 10px; background: var(--m-border); position: relative; flex: 0 0 34px; margin-top: 2px; }
+  .toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--m-text-muted); }
+  .toggle.on { background: var(--m-accent); }
+  .toggle.on::after { left: 16px; background: var(--m-selected-fg); }
+  .note { margin-top: 18px; font-size: 11.5px; color: var(--m-text-dim); line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="veil"></div>
+  <div class="panel">
+    <div class="nav">
+      <div class="who"><div class="avatar"></div><div><b>Nova</b><small>Edit Profile</small></div></div>
+      <div class="group">User Settings</div>
+      <div class="item">Account</div>
+      <div class="item">Appearance</div>
+      <div class="item">Accessibility</div>
+      <div class="group">Vencord Settings</div>
+      <div class="item">Vencord</div>
+      <div class="item">Plugins</div>
+      <div class="item active">Themes</div>
+      <div class="item">Updater</div>
+      <div class="item">Backup &amp; Restore</div>
+    </div>
+    <div class="main">
+      <h1>Themes</h1>
+      <div class="tabs"><div class="tab active">Local Themes</div><div class="tab">Online Themes</div></div>
+      <div class="hint">Themes are standalone CSS files. Drop one in the themes folder and toggle it here — each entry is named by the <b>@name</b> field inside the file.</div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Aetheris</div>
+          <div class="by">by AsterionVT (palette) - structure revised by GeeNuTz</div>
+          <div class="desc">Vivid Aetheris: full-strength purple gradient, layered surfaces, readable text. The default build. <a href="#">Website</a></div>
+        </div>
+        <div class="toggle on"></div>
+      </div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Aetheris BG</div>
+          <div class="by">by AsterionVT (palette) - structure revised by GeeNuTz</div>
+          <div class="desc">Aetheris over a purple-tinted wallpaper. Same palette, panels opaque enough that any wallpaper stays readable. <a href="#">Website</a></div>
+        </div>
+        <div class="toggle"></div>
+      </div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Aetheris Deep</div>
+          <div class="by">by AsterionVT (palette) - structure revised by GeeNuTz</div>
+          <div class="desc">Aetheris Deep: the same palette pulled toward indigo, for late nights and OLED screens. <a href="#">Website</a></div>
+        </div>
+        <div class="toggle"></div>
+      </div>
+      <div class="note">Three builds, three names. Two files sharing an @name are indistinguishable in this list — that is why the previous copies were replaced.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>`;
+
 const MOCK = String.raw`<!doctype html>
 <html lang="en">
 <head>
@@ -256,72 +365,72 @@ const MOCK = String.raw`<!doctype html>
 <div class="app">
   <div class="titlebar">
     <strong>ClearVision 7.0.1</strong> <span>__SUBTITLE__</span>
-    <span class="spacer"></span><span>Bonkerz</span><span class="spacer"></span>
+    <span class="spacer"></span><span>Aetheris</span><span class="spacer"></span>
     <div class="dots"><i></i><i></i><i></i></div>
   </div>
   <div class="shell">
     <div class="rail">
-      <div class="guild active">B</div><div class="guild">⚙</div><div class="guild">✦</div><div class="guild">◈</div>
+      <div class="guild active">A</div><div class="guild">⚙</div><div class="guild">✦</div><div class="guild">◈</div>
       <hr><div class="guild">▲</div><div class="guild">◍</div><div class="guild">✿</div><hr><div class="guild">◔</div>
     </div>
     <div class="sidebar">
-      <div class="server">Bonkerz <span>⌄</span></div>
+      <div class="server">Aetheris <span>⌄</span></div>
       <div class="channels">
         <div class="category">Text Channels</div>
-        <div class="channel selected"><span class="hash">#</span> the-asylum</div>
-        <div class="channel"><span class="hash">#</span> unemployed-activities</div>
-        <div class="channel"><span class="hash">#</span> yap-central</div>
-        <div class="channel unread"><span class="hash">#</span> isle-feed <span class="badge">3</span></div>
-        <div class="channel muted"><span class="hash">#</span> old-bits</div>
-        <div class="category">Meecha Voice</div>
-        <div class="channel"><span class="hash">◔</span> Meccha #1</div>
-        <div class="channel"><span class="hash">◔</span> Meccha #2</div>
-        <div class="category">Isle Voice</div>
-        <div class="channel"><span class="hash">◔</span> Isle #1</div>
+        <div class="channel selected"><span class="hash">#</span> general</div>
+        <div class="channel"><span class="hash">#</span> screenshots</div>
+        <div class="channel"><span class="hash">#</span> themes</div>
+        <div class="channel unread"><span class="hash">#</span> dev-log <span class="badge">3</span></div>
+        <div class="channel muted"><span class="hash">#</span> archive</div>
+        <div class="category">Voice</div>
+        <div class="channel"><span class="hash">◔</span> Lounge</div>
+        <div class="channel"><span class="hash">◔</span> Focus</div>
+        <div class="category">Sessions</div>
+        <div class="channel"><span class="hash">◔</span> Studio</div>
       </div>
       <div class="userpanel">
         <div class="avatar"></div>
-        <div class="who"><b>GeeNuTz</b><small>Online</small></div>
+        <div class="who"><b>Nova</b><small>Online</small></div>
         <div class="icons">🎙 ✆ ⚙</div>
       </div>
     </div>
     <div class="chat">
-      <div class="chathead"># the-asylum <em>vent, shitpost, exist</em></div>
+      <div class="chathead"># general <em>palette talk, screenshots, whatever</em></div>
       <div class="messages">
         <div class="msg">
           <div class="avatar"></div>
           <div class="mbody">
-            <div class="meta"><b>GeeNuTz</b><span class="rolebadge">ISLE</span><time>10/9/26, 20:44</time></div>
-            <div class="text">lmao</div>
+            <div class="meta"><b>Nova</b><span class="rolebadge">MEMBER</span><time>10/9/26, 20:44</time></div>
+            <div class="text">the gradient finally reads right</div>
           </div>
         </div>
         <div class="msg">
           <div class="avatar"></div>
           <div class="mbody">
-            <div class="meta"><b>esculho ching</b><time>10/9/26, 20:51</time></div>
-            <div class="text">bro trapp you freaky</div>
-            <div class="mention"><div class="text mentionline"><span class="pill">@GeeNuTz</span> you smoking that 0.5 cheese sherbet</div></div>
+            <div class="meta"><b>Wren</b><time>10/9/26, 20:51</time></div>
+            <div class="text">loading it now, one sec</div>
+            <div class="mention"><div class="text mentionline"><span class="pill">@Nova</span> the new palette is live</div></div>
             <div class="reaction me">🔥 2</div> <div class="reaction">😂 1</div>
           </div>
         </div>
         <div class="msg">
           <div class="avatar"></div>
           <div class="mbody">
-            <div class="meta"><b>GeeNuTz</b><span class="rolebadge">ISLE</span><time>10/9/26, 20:57</time></div>
-            <div class="text">yup — see <a class="link" href="#">the archive thread</a></div>
+            <div class="meta"><b>Nova</b><span class="rolebadge">MEMBER</span><time>10/9/26, 20:57</time></div>
+            <div class="text">yup — <a class="link" href="#">the changelog</a> has the details</div>
           </div>
         </div>
         <div class="divider">November 7, 2026</div>
         <div class="msg">
           <div class="avatar"></div>
           <div class="mbody">
-            <div class="meta"><b>GeeNuTz</b><span class="rolebadge">ISLE</span><time>11/7/26, 14:34</time></div>
-            <div class="text"><a class="link" href="#">https://discord.com/users/117868621859403543</a></div>
+            <div class="meta"><b>Nova</b><span class="rolebadge">MEMBER</span><time>11/7/26, 14:34</time></div>
+            <div class="text"><a class="link" href="#">https://github.com/GeeNuTz/aetheris-themes</a></div>
             <div class="card">
               <div class="thumb"></div>
               <div>
-                <h4>GeeNuTz</h4>
-                <p>geenutz · Zen Baboon · ISLE<br>Long-form text sits on the raised surface so it stays readable over the backdrop.</p>
+                <h4>Nova</h4>
+                <p>Aetheris · three builds · one palette<br>Long-form text sits on the raised surface so it stays readable over the backdrop.</p>
               </div>
             </div>
             <div class="note">palette preview — layout is a mock</div>
@@ -330,31 +439,31 @@ const MOCK = String.raw`<!doctype html>
       </div>
       <div class="composer">
         <div class="box">
-          <span class="plus">+</span><span>Message #the-asylum</span><span class="tools">🖼 GIF 😊</span>
+          <span class="plus">+</span><span>Message #general</span><span class="tools">🖼 GIF 😊</span>
         </div>
       </div>
     </div>
     <div class="scroll"></div>
     <div class="members">
       <div class="role">Online — 3</div>
-      <div class="member"><div class="avatar"></div><b>GeeNuTz</b><span class="tag">ISLE</span><span class="dot on"></span></div>
-      <div class="member"><div class="avatar"></div><b>Snoop</b><span class="rolebadge">peep</span><span class="dot idle"></span></div>
-      <div class="member"><div class="avatar"></div><b>Meccha</b><span class="tag">bot</span><span class="dot dnd"></span></div>
+      <div class="member"><div class="avatar"></div><b>Nova</b><span class="tag">OWNER</span><span class="dot on"></span></div>
+      <div class="member"><div class="avatar"></div><b>Kite</b><span class="rolebadge">MOD</span><span class="dot idle"></span></div>
+      <div class="member"><div class="avatar"></div><b>Vela</b><span class="tag">bot</span><span class="dot dnd"></span></div>
       <div class="role">Offline — 3</div>
-      <div class="member offline"><div class="avatar"></div><b>samzoflame</b><span class="dot off"></span></div>
-      <div class="member offline"><div class="avatar"></div><b>esculho ching</b><span class="dot off"></span></div>
-      <div class="member offline"><div class="avatar"></div><b>TrapGodd4</b><span class="dot off"></span></div>
+      <div class="member offline"><div class="avatar"></div><b>Juno</b><span class="dot off"></span></div>
+      <div class="member offline"><div class="avatar"></div><b>Wren</b><span class="dot off"></span></div>
+      <div class="member offline"><div class="avatar"></div><b>Pax</b><span class="dot off"></span></div>
     </div>
   </div>
 </div>
 </body>
 </html>`;
 
-function render({ title, subtitle, palette }) {
+function render({ title, subtitle, palette, template = MOCK }) {
   const vars = Object.entries(palette.vars)
     .map(([name, value]) => `${name}: ${value};`)
     .join(" ");
-  return MOCK.replaceAll("__TITLE__", title)
+  return template.replaceAll("__TITLE__", title)
     .replace("__SUBTITLE__", subtitle)
     .replace("__VARS__", vars)
     .replace("__BACKGROUND__", palette.background);
@@ -366,6 +475,14 @@ const pages = BUILDS.map((build) => ({
   subtitle: build.title,
   palette: mockVars(loadTheme(join(repoRoot, build.file))),
 }));
+
+pages.push({
+  out: "docs/preview-themes.html",
+  title: "Aetheris — theme list preview",
+  subtitle: "Settings - Themes",
+  palette: mockVars(loadTheme(join(repoRoot, "Aetheris.theme.css"))),
+  template: THEMES_MOCK,
+});
 
 pages.push({
   out: "docs/preview-before.html",

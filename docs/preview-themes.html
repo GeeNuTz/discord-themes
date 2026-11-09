@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aetheris — theme list preview</title>
+<style>
+  :root { --m-rail: rgba(5, 0, 26, 0.84); --m-sidebar: rgba(14, 4, 60, 0.72); --m-chat: rgba(18, 5, 72, 0.62); --m-raised: rgba(28, 8, 100, 0.8); --m-input: rgba(24, 7, 88, 0.86); --m-border: rgba(147, 96, 240, 0.24); --m-text: #f0e6ff; --m-text-strong: #fbf6ff; --m-text-muted: #bda6ea; --m-text-dim: #a68cd8; --m-channel: #d5c0ff; --m-channel-muted: #bda6ea; --m-unread: #e8dbff; --m-accent: #9360f0; --m-accent-fill: #7636d8; --m-on-accent: #ffffff; --m-selected-bg: #9360f0; --m-selected-fg: #1b0736; --m-success: #4ade9e; --m-warning: #f9c46b; --m-danger: #ff7f96; --m-offline: #a68cd8; --m-mention-bg: hsl(from #9360f0 h s l / 0.16); --m-mention-pill: #7636d8; --m-mention-pill-fg: #f6efff; --m-scrollbar: #6a3fc0; --m-filter: saturate(calc(1 * 1.05)); --m-bg: radial-gradient(circle 1200px at 50% -6%, rgba(170, 122, 255, 0.18), rgba(170, 122, 255, 0) 64%), radial-gradient(circle 1000px at 12% 4%, rgba(160, 96, 255, 0.31), rgba(160, 96, 255, 0) 70%), radial-gradient(circle 1200px at 90% 96%, rgba(112, 40, 255, 0.26), rgba(112, 40, 255, 0) 72%), radial-gradient(circle 820px at 56% 50%, rgba(74, 0, 200, 0.26), rgba(74, 0, 200, 0) 74%), linear-gradient(160deg, #150540 0%, #0e0233 46%, #06001c 100%); }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: "Roboto", "Noto Sans", "DejaVu Sans", system-ui, sans-serif;
+    font-size: 15px; color: var(--m-text); background: var(--m-chat); overflow: hidden;
+  }
+  .screen { position: fixed; inset: 0; }
+  .screen::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--m-bg); filter: var(--m-filter);
+    background-position: center; background-size: cover; background-repeat: no-repeat;
+  }
+  .veil { position: absolute; inset: 0; background: var(--m-rail); opacity: .72; }
+  .panel {
+    position: absolute; left: 12%; top: 8%; right: 12%; bottom: 8%;
+    display: flex; background: var(--m-chat); border: 1px solid var(--m-border);
+    border-radius: 8px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, .55);
+  }
+  .nav { width: 26%; background: var(--m-sidebar); border-right: 1px solid var(--m-border); padding: 14px 10px; }
+  .nav .who { display: flex; align-items: center; gap: 10px; padding: 6px 8px 16px; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--m-accent), var(--m-raised)); border: 1px solid var(--m-border); }
+  .nav .who b { display: block; color: var(--m-text-strong); font-size: 15px; }
+  .nav .who small { color: var(--m-text-muted); font-size: 12px; }
+  .nav .group { margin: 14px 6px 6px; font-size: 11px; letter-spacing: .8px; text-transform: uppercase; color: var(--m-text-muted); }
+  .nav .item { padding: 8px 10px; border-radius: 6px; color: var(--m-text-muted); font-size: 14px; margin-bottom: 2px; }
+  .nav .item.active { background: var(--m-accent); color: var(--m-selected-fg); font-weight: 600; }
+  .main { flex: 1; padding: 26px 34px; overflow: hidden; }
+  .main h1 { margin: 0 0 18px; font-size: 22px; color: var(--m-text-strong); }
+  .tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--m-border); margin-bottom: 20px; }
+  .tab { padding: 0 2px 10px; color: var(--m-text-muted); font-size: 14px; }
+  .tab.active { color: var(--m-text-strong); border-bottom: 2px solid var(--m-accent); font-weight: 600; }
+  .section { font-size: 13px; font-weight: 700; color: var(--m-text-strong); margin: 18px 0 8px; }
+  .hint { font-size: 12.5px; color: var(--m-text-muted); line-height: 1.5; margin-bottom: 12px; }
+  .row {
+    display: flex; align-items: flex-start; gap: 16px; padding: 14px 16px;
+    background: var(--m-raised); border: 1px solid var(--m-border); border-radius: 8px; margin-bottom: 10px;
+  }
+  .row .meta { flex: 1; }
+  .row .name { font-weight: 700; color: var(--m-text-strong); font-size: 15px; }
+  .row .by { font-size: 11.5px; color: var(--m-text-muted); margin: 2px 0 6px; }
+  .row .desc { font-size: 12.5px; color: var(--m-text-muted); line-height: 1.45; }
+  .row .desc a { color: var(--m-accent); text-decoration: none; }
+  .toggle { width: 34px; height: 20px; border-radius: 10px; background: var(--m-border); position: relative; flex: 0 0 34px; margin-top: 2px; }
+  .toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--m-text-muted); }
+  .toggle.on { background: var(--m-accent); }
+  .toggle.on::after { left: 16px; background: var(--m-selected-fg); }
+  .note { margin-top: 18px; font-size: 11.5px; color: var(--m-text-dim); line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="veil"></div>
+  <div class="panel">
+    <div class="nav">
+      <div class="who"><div class="avatar"></div><div><b>Nova</b><small>Edit Profile</small></div></div>
+      <div class="group">User Settings</div>
+      <div class="item">Account</div>
+      <div class="item">Appearance</div>
+      <div class="item">Accessibility</div>
+      <div class="group">Vencord Settings</div>
+      <div class="item">Vencord</div>
+      <div class="item">Plugins</div>
+      <div class="item active">Themes</div>
+      <div class="item">Updater</div>
+      <div class="item">Backup &amp; Restore</div>
+    </div>
+    <div class="main">
+      <h1>Themes</h1>
+      <div class="tabs"><div class="tab active">Local Themes</div><div class="tab">Online Themes</div></div>
+      <div class="hint">Themes are standalone CSS files. Drop one in the themes folder and toggle it here — each entry is named by the <b>@name</b> field inside the file.</div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Aetheris</div>
+          <div class="by">by AsterionVT (palette) - structure revised by GeeNuTz</div>
+          <div class="desc">Vivid Aetheris: full-strength purple gradient, layered surfaces, readable text. The default build. <a href="#">Website</a></div>
+        </div>
+        <div class="toggle on"></div>
+      </div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Aetheris BG</div>
+          <div class="by">by AsterionVT (palette) - structure revised by GeeNuTz</div>
+          <div class="desc">Aetheris over a purple-tinted wallpaper. Same palette, panels opaque enough that any wallpaper stays readable. <a href="#">Website</a></div>
+        </div>
+        <div class="toggle"></div>
+      </div>
+      <div class="row">
+        <div class="meta">
+          <div class="name">Aetheris Deep</div>
+          <div class="by">by AsterionVT (palette) - structure revised by GeeNuTz</div>
+          <div class="desc">Aetheris Deep: the same palette pulled toward indigo, for late nights and OLED screens. <a href="#">Website</a></div>
+        </div>
+        <div class="toggle"></div>
+      </div>
+      <div class="note">Three builds, three names. Two files sharing an @name are indistinguishable in this list — that is why the previous copies were replaced.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
