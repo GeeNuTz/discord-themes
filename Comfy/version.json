@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "date": "2026-11-09",
   "url": "https://github.com/GeeNuTz/comfy-deep",
-  "notes": "Comfy Deep port: teal-on-navy ClearVision theme for Vesktop plus a Revenge (mobile) theme, measured contrast."
+  "notes": "Header stamp: the title bar shows Comfy Deep and its version instead of ClearVision's."
 }

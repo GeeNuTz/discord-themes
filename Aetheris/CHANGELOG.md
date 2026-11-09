@@ -4,6 +4,25 @@ Aetheris is a ClearVision v7 theme for Vencord / Vesktop. Versions follow the
 palette, not ClearVision's own numbering; each entry states the ClearVision
 build it was written against.
 
+## 5.3.1 — 2026-11-09
+
+ClearVision stamped its own name and version into the title bar; each build now
+stamps itself.
+
+### Changed
+- Section 8.6 overrides the two pseudo-elements ClearVision writes ("ClearVision"
+  + "7.0.1") and the repeat in the channel-header info slot. The title bar shows
+  the build's `@name` and `@version` from the file header - "Aetheris v5.3.1",
+  "Aetheris BG v5.3.1", "Aetheris Deep v5.3.1" - so three builds are told apart
+  at a glance.
+- Selectors stay pinned to ClearVision 7.0.1's class hashes: if a Discord update
+  renames them the stamp reverts to ClearVision's text rather than restyling an
+  unrelated element.
+
+### Tested
+- 65 -> 68: every build asserts its own name, its own version and the absence of
+  `content: "ClearVision"`.
+
 ## 5.3.0 — 2026-11-09
 
 A mobile theme per build, not just the default one.

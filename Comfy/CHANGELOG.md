@@ -3,6 +3,21 @@
 Comfy Deep for Discord. One palette, two clients: a ClearVision v7 stylesheet for
 Vesktop/Vencord and a Revenge theme manifest. Versions follow the port, not Comfy's.
 
+## 1.0.1 — 2026-11-09
+
+ClearVision stamped its own name and version into the title bar; this build now
+stamps itself.
+
+### Changed
+- Section 8.6 overrides the two pseudo-elements ClearVision writes ("ClearVision"
+  + "7.0.1") and the repeat in the channel-header info slot. The title bar shows
+  "Comfy Deep" and the version from the file header.
+- Selectors stay pinned to ClearVision 7.0.1's class hashes; a rename reverts the
+  stamp instead of restyling something else.
+
+### Tested
+- 23 -> 24.
+
 ## 1.0.0 — 2026-11-09
 
 First release. Written against ClearVision 7.0.1 and Revenge's `spec: 2` theme format.

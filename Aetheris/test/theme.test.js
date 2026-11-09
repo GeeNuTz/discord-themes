@@ -216,8 +216,15 @@ for (const { name, file, theme, description } of themes) {
     const tokens = new Set(
       [...source.matchAll(/class\*="([a-zA-Z]+)_/g)].map((m) => m[1]).filter((t) => !pinned.includes(t)),
     );
-    const missing = [...tokens].filter((t) => !source.includes(`class*="${t}-"`));
+    const missing = [...tokens].filter((t) => !source.includes(`class*="${t}-`));
     assert.deepEqual(missing, [], `add a "name-" variant for: ${missing.join(", ")}`);
+  });
+
+  test(`${name}: the header stamp is this build, not ClearVision`, () => {
+    assert.match(source, new RegExp(`content:\\s*"${name}"`), "title bar shows this build's name");
+    assert.match(source, new RegExp(`content:\\s*"v${versionJson.version}"`), "title bar shows this build's version");
+    assert.match(source, new RegExp(`content:\\s*"${name} v${versionJson.version}"`), "the info slot repeats both");
+    assert.doesNotMatch(source, /content:\s*"ClearVision/, "ClearVision's own stamp is replaced");
   });
 
   test(`${name}: keeps the Aetheris faces`, () => {

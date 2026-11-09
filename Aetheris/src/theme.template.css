@@ -422,3 +422,23 @@
 :is([class*="channelTextArea_"], [class*="channelTextArea-"]):focus-within {
     box-shadow: 0 0 0 1px var(--main-color), 0 0 18px var(--aether-glow);
 }
+
+/* --- 8.6 Header stamp ---------------------------------------------------
+ * ClearVision writes its own name and version into the title bar with two
+ * pseudo-elements ("ClearVision" + "7.0.1") and repeats it in the channel
+ * header info slot. This build stamps itself instead: same place, same type,
+ * the theme's name and version from the file header.
+ *
+ * The selectors are pinned to the class hashes ClearVision 7.0.1 targets. If a
+ * Discord update renames them the stamp reverts to ClearVision's own text -
+ * visible, harmless, and better than guessing a broader selector that could
+ * restyle an unrelated element. */
+:is([class*="leading_3zSH5d"], [class*="leading-3zSH5d"])::before {
+    content: "{{NAME}}";
+}
+:is([class*="leading_3zSH5d"], [class*="leading-3zSH5d"])::after {
+    content: "v{{VERSION}}";
+}
+:is([class*="info_C_Rpm7"], [class*="info-C_Rpm7"])::after {
+    content: "{{NAME}} v{{VERSION}}";
+}

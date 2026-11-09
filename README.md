@@ -94,8 +94,8 @@ the theme's own `brightness()` filter. A pair under 4.5:1 fails the build. Repor
 
 | Theme | Checks |
 |---|---|
-| Aetheris | 65 — three builds + three mobile manifests |
-| Comfy Deep | 23 — stylesheet + mobile manifest |
+| Aetheris | 68 — three builds + three mobile manifests |
+| Comfy | 24 — stylesheet + mobile manifest |
 
 ## Development
 

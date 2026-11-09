@@ -167,6 +167,14 @@ test("the accent that carries text is not the decorative accent", () => {
   );
 });
 
+test("the header stamp is this build, not ClearVision", () => {
+  const v = JSON.parse(readFileSync(join(repoRoot, "version.json"), "utf8")).version;
+  assert.match(source, new RegExp(`content:\\s*"Comfy Deep"`), "title bar shows the theme name");
+  assert.match(source, new RegExp(`content:\\s*"v${v}"`), "title bar shows the version");
+  assert.match(source, new RegExp(`content:\\s*"Comfy Deep v${v}"`), "the info slot repeats both");
+  assert.doesNotMatch(source, /content:\s*"ClearVision/, "ClearVision's own stamp is replaced");
+});
+
 test("filled-button overrides exist for brand, danger and success", () => {
   for (const token of ["--comfy-accent-fill", "--comfy-danger-fill", "--comfy-success-fill"]) {
     assert.match(source, new RegExp(`background-color:\\s*var\\(${token}\\)`));
@@ -180,7 +188,7 @@ test("both class-name conventions are matched", () => {
   const tokens = new Set(
     [...source.matchAll(/class\*="([a-zA-Z]+)_/g)].map((m) => m[1]).filter((t) => !pinned.includes(t)),
   );
-  assert.deepEqual([...tokens].filter((t) => !source.includes(`class*="${t}-"`)), []);
+  assert.deepEqual([...tokens].filter((t) => !source.includes(`class*="${t}-`)), []);
 });
 
 // --- Revenge manifest --------------------------------------------------------

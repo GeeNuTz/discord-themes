@@ -179,7 +179,7 @@ captures with other users' display names; they are replaced, and remain only in 
 ```bash
 cd aetheris
 npm run build       # src/theme.template.css + src/palettes/*.css -> three stylesheets + the manifest
-npm test            # 65 checks: three builds + three manifests
+npm test            # 68 checks: three builds + three manifests
 npm run report      # regenerates docs/CONTRAST.md for all builds
 npm run preview     # regenerates docs/preview*.html from the shipped files
 ```
@@ -228,7 +228,7 @@ palette credit to AsterionVT and the framework credit to ClearVision.
 
 ## Versioning
 
-`5.3.0` ships the three builds plus one mobile manifest each, and is the base. `5.0.0` was the single-build rewrite (now
+`5.3.1` ships the three builds plus one mobile manifest each, and is the base. `5.0.0` was the single-build rewrite (now
 `Aetheris Deep`'s palette); `4.0.0` is kept verbatim in
 [docs/legacy/Aetheris-4.0.0.css](docs/legacy/Aetheris-4.0.0.css).
 
