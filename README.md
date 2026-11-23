@@ -8,6 +8,23 @@ Aetheris/     Aetheris, Aetheris BG, Aetheris Deep + one Revenge manifest each
 Comfy/        Comfy Deep + its Revenge manifest
 ```
 
+
+## Download / install
+
+Every build is published as a release asset — add it by link, no download needed.
+
+**[Aetheris 5.3.1](https://github.com/GeeNuTz/discord-themes/releases/tag/aetheris-v5.3.1)** · **[Comfy Deep 1.0.1](https://github.com/GeeNuTz/discord-themes/releases/tag/comfy-deep-v1.0.1)**
+
+| Build | Desktop — `.theme.css` | Mobile — Revenge |
+|---|---|---|
+| Aetheris | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-Revenge.json` |
+| Aetheris BG | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-BG.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-BG-Revenge.json` |
+| Aetheris Deep | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-Deep.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-Deep-Revenge.json` |
+| Comfy Deep | `https://github.com/GeeNuTz/discord-themes/releases/download/comfy-deep-v1.0.1/ComfyDeep.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/comfy-deep-v1.0.1/ComfyDeep-Revenge.json` |
+
+Desktop: paste the `.theme.css` URL into *Themes → Online Themes* (Vencord / Vesktop) or the
+BetterDiscord theme folder as a link. Mobile: paste the `*-Revenge.json` URL into Revenge.
+
 ## These themes are built on ClearVision — not standalone
 
 To be plain about it: the desktop files are **customisations of ClearVision v7**, they do not
