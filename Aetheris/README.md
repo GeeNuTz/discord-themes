@@ -265,3 +265,14 @@ See [CHANGELOG.md](CHANGELOG.md).
 MIT — see [../../LICENSE](../../LICENSE), which covers this collection's own code and docs. The
 Aetheris palette is AsterionVT's; ClearVision v7 belongs to the ClearVision Team; Meloso and Roboto
 belong to their authors. Nothing third-party is redistributed here.
+
+## Install from a link (no download)
+
+| Build | Desktop (Vencord / Vesktop / BetterDiscord) | Mobile (Revenge) |
+|---|---|---|
+| Aetheris | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-Revenge.json` |
+| Aetheris BG | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-BG.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-BG-Revenge.json` |
+| Aetheris Deep | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-Deep.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/aetheris-v5.3.1/Aetheris-Deep-Revenge.json` |
+
+Desktop: paste the `.theme.css` URL into *Themes → Online Themes*.
+Mobile: add the `*-Revenge.json` URL in Revenge.

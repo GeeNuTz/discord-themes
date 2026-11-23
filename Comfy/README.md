@@ -184,3 +184,12 @@ Themes authors; ClearVision v7 belongs to the ClearVision Team. Neither is redis
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md).
+
+## Install from a link (no download)
+
+| Build | Desktop (Vencord / Vesktop / BetterDiscord) | Mobile (Revenge) |
+|---|---|---|
+| Comfy Deep | `https://github.com/GeeNuTz/discord-themes/releases/download/comfy-deep-v1.0.1/ComfyDeep.theme.css` | `https://github.com/GeeNuTz/discord-themes/releases/download/comfy-deep-v1.0.1/ComfyDeep-Revenge.json` |
+
+Not standalone: the desktop file `@import`s `clearvision.github.io/ClearVision-v7`,
+so it needs network access to that host.
